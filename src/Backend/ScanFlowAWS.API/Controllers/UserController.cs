@@ -12,6 +12,7 @@ namespace ScanFlowAWS.API.Controllers
         [ProducesResponseType(typeof(ResponseRegisterUserJson), StatusCodes.Status201Created)]
         public async Task<IActionResult> Register([FromBody] RequestRegisterUserJson request)
         {
+            
             return null;
         }
 

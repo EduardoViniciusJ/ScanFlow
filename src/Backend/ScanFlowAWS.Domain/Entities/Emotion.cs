@@ -9,5 +9,7 @@
         public double Sad {  get; set; } 
         public double Angry {  get; set; }
         public double Surprised {  get; set; }
+        public Photo? Photo { get; set; }
+        public User? User { get; set; }
     }
 }
