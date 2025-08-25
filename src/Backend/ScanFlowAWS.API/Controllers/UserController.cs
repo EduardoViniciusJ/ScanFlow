@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ScanFlowAWS.API.Requests;
-using ScanFlowAWS.API.Responses;
+using ScanFlowAWS.Application.DTOs.Requests;
+using ScanFlowAWS.Application.UseCases.User.Register;
 
 namespace ScanFlowAWS.API.Controllers
 {
@@ -8,13 +8,18 @@ namespace ScanFlowAWS.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+
         [HttpPost]
-        [ProducesResponseType(typeof(ResponseRegisterUserJson), StatusCodes.Status201Created)]
-        public async Task<IActionResult> Register([FromBody] RequestRegisterUserJson request)
+        public IActionResult Register([FromBody] RequestRegisterUserJson request)
         {
-            
-            return null;
+            var register = new RegisterUseCase();
+
+            var result = register.Execute(request);
+
+            return Ok(result);  
+
         }
 
+        
     }
 }
