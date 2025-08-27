@@ -12,8 +12,8 @@ using ScanFlowAWS.Infrastructure.DataAcess.Context;
 namespace ScanFlowAWS.Infrastructure.Migrations
 {
     [DbContext(typeof(ScanFlowAWSDbContext))]
-    [Migration("20250819164733_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250827084844_Identity")]
+    partial class Identity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

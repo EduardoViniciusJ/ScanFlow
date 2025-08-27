@@ -2,7 +2,8 @@
 using ScanFlowAWS.Application;
 using ScanFlowAWS.Application.Services;
 using ScanFlowAWS.Application.UseCases.User.Register;
-using ScanFlowAWS.Infrastructure.DataAcess;
+using ScanFlowAWS.Infrastructure;
+using ScanFlowAWS.Infrastructure.DataAcess.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,10 @@ builder.Services.AddAutoMapper(cfg =>
 builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddScoped<RegisterUseCase>();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+builder.Services.AddIdentityApiEndpoints<AppIdentityUser>().AddEntityFrameworkStores<ScanFlowAWSDbContext>();
+
 
 
 var app = builder.Build();
@@ -38,5 +43,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapIdentityApi<AppIdentityUser>();
 
 app.Run();

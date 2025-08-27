@@ -17,15 +17,10 @@ namespace ScanFlowAWS.Infrastructure
             services.AddDbContext<ScanFlowAWSDbContext>(options =>
             {
                 options.UseSqlServer(
-                    configuration.GetConnectionString("DefaultConnection"),
+                    configuration.GetConnectionString("DefaultConnectionString"),
                     b => b.MigrationsAssembly("ScanFlowAWS.Infrastructure") 
                 );
             });
-        }
-
-        public static void AddIdentity(IServiceCollection services, IConfiguration configuration)
-        {
-            
         }
     }
 }

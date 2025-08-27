@@ -12,11 +12,9 @@ namespace ScanFlowAWS.API.Controllers
         [HttpPost]
         public IActionResult Register([FromBody] RequestRegisterUserJson request)
         {
-            var register = new RegisterUseCase();
+            var register = request;
 
-            var result = register.Execute(request);
-
-            return Ok(result);  
+            return Ok(register);  
 
         }
 
