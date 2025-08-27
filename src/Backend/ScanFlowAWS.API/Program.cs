@@ -1,4 +1,7 @@
-using ScanFlowAWS.API.Filters;
+﻿using ScanFlowAWS.API.Filters;
+using ScanFlowAWS.Application;
+using ScanFlowAWS.Application.Services;
+using ScanFlowAWS.Application.UseCases.User.Register;
 using ScanFlowAWS.Infrastructure.DataAcess;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +15,12 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile(new AutoMapping());
+});
+builder.Services.AddApplication(builder.Configuration);
+builder.Services.AddScoped<RegisterUseCase>();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 
