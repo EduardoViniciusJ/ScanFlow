@@ -22,5 +22,10 @@ namespace ScanFlowAWS.Infrastructure
                 );
             });
         }
+
+        public static void AddIdentity(IServiceCollection services, IConfiguration configuration)
+        {
+            
+        }
     }
 }
