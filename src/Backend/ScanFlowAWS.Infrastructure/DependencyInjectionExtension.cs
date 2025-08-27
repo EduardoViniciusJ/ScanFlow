@@ -18,7 +18,7 @@ namespace ScanFlowAWS.Infrastructure
             {
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnectionString"),
-                    b => b.MigrationsAssembly("ScanFlowAWS.Infrastructure") 
+                    b => b.MigrationsAssembly("ScanFlowAWS.Infrastructure")
                 );
             });
         }

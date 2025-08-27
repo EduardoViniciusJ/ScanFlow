@@ -1,4 +1,5 @@
-﻿using ScanFlowAWS.API.Filters;
+﻿using Microsoft.AspNetCore.Identity;
+using ScanFlowAWS.API.Filters;
 using ScanFlowAWS.Application;
 using ScanFlowAWS.Application.Services;
 using ScanFlowAWS.Application.UseCases.User.Register;
@@ -23,9 +24,11 @@ builder.Services.AddAutoMapper(cfg =>
 builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddScoped<RegisterUseCase>();
 builder.Services.AddInfrastructure(builder.Configuration);
+
+
+builder.Services.AddIdentityCore<AppIdentityUser>().AddEntityFrameworkStores<ScanFlowAWSDbContext>().AddDefaultTokenProviders().AddSignInManager();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
-builder.Services.AddIdentityApiEndpoints<AppIdentityUser>().AddEntityFrameworkStores<ScanFlowAWSDbContext>();
 
 
 
@@ -43,7 +46,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapIdentityApi<AppIdentityUser>();
 
 app.Run();
