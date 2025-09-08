@@ -5,7 +5,7 @@ namespace ScanFlowAWS.Application.UseCases.User.Register
 {
     public interface IRegisterUseCase
     {
-        public Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request);
+        Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request);
 
     }
 }

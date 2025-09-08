@@ -21,12 +21,10 @@ builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile(new AutoMapping());
 });
-builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddScoped<RegisterUseCase>();
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
-
-builder.Services.AddIdentityCore<AppIdentityUser>().AddEntityFrameworkStores<ScanFlowAWSDbContext>().AddDefaultTokenProviders().AddSignInManager();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 

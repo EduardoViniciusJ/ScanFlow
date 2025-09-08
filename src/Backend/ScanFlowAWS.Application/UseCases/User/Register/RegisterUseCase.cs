@@ -23,6 +23,7 @@ namespace ScanFlowAWS.Application.UseCases.User.Register
             return new ResponseRegisterUserJson
             {
                 Username = request.Username,
+                Email = request.Email 
             };
         }
 

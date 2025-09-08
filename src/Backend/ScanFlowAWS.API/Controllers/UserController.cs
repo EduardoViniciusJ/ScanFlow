@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ScanFlowAWS.Application.DTOs.Requests;
 using ScanFlowAWS.Application.UseCases.User.Register;
+using ScanFlowAWS.Infrastructure.DataAcess.Context;
 
 namespace ScanFlowAWS.API.Controllers
 {
@@ -8,16 +9,6 @@ namespace ScanFlowAWS.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-
-        [HttpPost]
-        public IActionResult Register([FromBody] RequestRegisterUserJson request)
-        {
-            var register = request;
-
-            return Ok(register);  
-
-        }
-
-        
+               
     }
 }

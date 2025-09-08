@@ -7,9 +7,9 @@ namespace ScanFlowAWS.Application
 {
     public static class DependencyInjectionExtension
     {
-        public static void AddApplication(this IServiceCollection service, IConfiguration configuration)
+        public static void AddApplication(this IServiceCollection service)
         {
-
+            AddUseCases(service);
         }
 
         public static void AddUseCases(IServiceCollection service)
