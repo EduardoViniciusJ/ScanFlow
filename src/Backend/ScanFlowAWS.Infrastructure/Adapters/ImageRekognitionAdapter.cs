@@ -16,6 +16,7 @@ namespace ScanFlowAWS.Infrastructure.Adapters
         {
 
             var labels = await _rekognitionService.DetectLabelsAsync(imageBytes);
+
             return labels.Select(l => $"{l.Name} ({l.Confidence}%)").ToList();
         }
     }

@@ -20,7 +20,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-//builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
+
+builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile(new AutoMapping());
@@ -30,14 +31,12 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 
-// Configurar dependências
 builder.Services.AddSingleton(new RekognitionService("us-east-1"));
 builder.Services.AddScoped<IImagemRekognition, ImageRekognitionAdapter>();
-builder.Services.AddScoped<AnalyzeImageUseCase>();
-
-
+builder.Services.AddScoped<RekognitionUseCase>();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
