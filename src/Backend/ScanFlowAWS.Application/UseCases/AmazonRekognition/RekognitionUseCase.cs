@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using ScanFlowAWS.Application.DTOs.Requests;
+using ScanFlowAWS.Application.DTOs.Responses;
 using ScanFlowAWS.Application.Exceptions;
 using ScanFlowAWS.Domain.Services;
+using ScanFlowAWS.Domain.ValueObjects;
+using System.Reflection.Emit;
 
 namespace ScanFlowAWS.Application.UseCases.AmazonRekognition
 {
@@ -14,18 +17,22 @@ namespace ScanFlowAWS.Application.UseCases.AmazonRekognition
             _imagemRekognition = imagemRekognition;
         }
 
-        public async Task<List<string>> Execute(RequestRekognition request)
+        public async Task<List<ResponseRekognition>> Execute(RequestRekognition request)
         {
             ValidateUseCases(request);
 
-            using var memoryStream  = new MemoryStream();
+            using var memoryStream = new MemoryStream();
             await request.file.CopyToAsync(memoryStream);
 
             var result = await _imagemRekognition.AnalyzeImage(memoryStream.ToArray());
 
-            return result;  
+            return result
+           .Select(l => new ResponseRekognition
+           {
+               Label = l.Name,
+               Confidence = l.Confidence
+           }).ToList();
         }
-
         private void ValidateUseCases(RequestRekognition request)
         {
             var validator = new RekognitionUseValidator();

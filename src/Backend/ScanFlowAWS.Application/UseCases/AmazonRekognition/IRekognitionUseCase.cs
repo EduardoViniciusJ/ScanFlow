@@ -1,9 +1,10 @@
 ﻿using ScanFlowAWS.Application.DTOs.Requests;
+using ScanFlowAWS.Application.DTOs.Responses;
 
 namespace ScanFlowAWS.Application.UseCases.AmazonRekognition
 {
     public interface IRekognitionUseCase
     {
-        Task<List<string>> Execute(RequestRekognition request);
+        Task<List<ResponseRekognition>> Execute(RequestRekognition request);
     }
 }
