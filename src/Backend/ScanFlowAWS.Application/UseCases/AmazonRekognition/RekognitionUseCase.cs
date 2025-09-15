@@ -18,23 +18,6 @@ namespace ScanFlowAWS.Application.UseCases.AmazonRekognition
             _imagemRekognition = imagemRekognition;
         }
 
-        public async Task<List<ResponseRekognitionJson>> ExecuteLabels(RequestRekognitionJson request)
-        {
-            ValidateUseCases(request);
-
-            using var memoryStream = new MemoryStream();
-            await request.file.CopyToAsync(memoryStream);
-
-            var result = await _imagemRekognition.AnalyzeImage(memoryStream.ToArray());
-
-            return result
-           .Select(l => new ResponseRekognitionJson
-           {
-               Type = l.Name,
-               Confidence = l.Confidence
-           }).ToList();
-        }
-
         public async Task<List<ResponseRekognitionJson>> ExecuteFaces(RequestRekognitionJson request)
         {
             ValidateUseCases(request);

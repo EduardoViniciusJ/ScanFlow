@@ -13,31 +13,6 @@ namespace ScanFlowAWS.Infrastructure.Services
             _rekognitionClient = new AmazonRekognitionClient(Amazon.RegionEndpoint.GetBySystemName(region));
         }
 
-        public async Task<List<ImageLabel>> DetectLabelsAsync(byte[] imageBytes)
-        {
-            var request = new DetectLabelsRequest
-            {
-                Image = new Image
-                {
-                    Bytes = new MemoryStream(imageBytes)
-                },
-                MaxLabels = 10,
-                MinConfidence = 75F
-            };
-
-            var response = await _rekognitionClient.DetectLabelsAsync(request);
-
-            var result = new List<ImageLabel>();
-
-            foreach (var l in response.Labels)
-            {
-                var imageLabel = new ImageLabel(l.Name, (float)l.Confidence);
-                result.Add(imageLabel);
-            }
-
-            return result;
-        }
-
         public async Task<List<ImageFace>> DetectFacesAsync(byte[] imageBytes)
         {
             var request = new DetectFacesRequest

@@ -19,12 +19,5 @@ namespace ScanFlowAWS.Infrastructure.Adapters
 
             return images;
         }
-
-        public async Task<List<ImageLabel>> AnalyzeImage(byte[] imageBytes)
-        {
-            var labels = await _rekognitionService.DetectLabelsAsync(imageBytes);
-            
-            return labels;
-        }
     }
 }

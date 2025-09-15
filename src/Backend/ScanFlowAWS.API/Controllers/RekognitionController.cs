@@ -11,16 +11,6 @@ namespace ScanFlowAWS.API.Controllers
     [ApiController]
     public class RekognitionController : ControllerBase
     {   
-        [HttpPost("analyzelabels")]
-        [ProducesResponseType(typeof(ResponseRekognitionJson), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AnalyzeLabels([FromForm] RequestRekognitionJson request, [FromServices]IRekognitionUseCase useCase)
-        {
-            var result = await useCase.ExecuteLabels(request);
-
-            return Ok(result);
-        }
-
         [HttpPost("analyzefaces")]
         [ProducesResponseType(typeof(ResponseRekognitionJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
