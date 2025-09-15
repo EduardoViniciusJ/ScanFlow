@@ -1,8 +1,8 @@
 ﻿namespace ScanFlowAWS.Application.DTOs.Responses
 {
-    public class ResponseRekognition
+    public class ResponseRekognitionJson
     {
-        public string Label { get; set; } = string.Empty;
         public float Confidence { get; set; }
+        public string Type { get; set; } = string.Empty;
     }
 }

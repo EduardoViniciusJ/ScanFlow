@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using ScanFlowAWS.Application.UseCases.User.Register;
 using ScanFlowAWS.Application.UseCases.AmazonRekognition;
+using ScanFlowAWS.Application.UseCases.AmazonRekognition.Interface;
+using ScanFlowAWS.Application.UseCases.User.Register.Interfaces;
 
 
 namespace ScanFlowAWS.Application
@@ -23,5 +25,6 @@ namespace ScanFlowAWS.Application
         {
             service.AddScoped<IRekognitionUseCase, RekognitionUseCase>();   
         }
+
     }
 }

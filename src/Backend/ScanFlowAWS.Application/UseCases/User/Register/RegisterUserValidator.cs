@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using ScanFlowAWS.Application.DTOs.Requests;
+using ScanFlowAWS.Application.DTOs.Requests.User;
 
 namespace ScanFlowAWS.Application.UseCases.User.Register
 {

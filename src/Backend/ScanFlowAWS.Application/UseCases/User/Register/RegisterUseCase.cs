@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using ScanFlowAWS.Application.DTOs.Requests;
-using ScanFlowAWS.Application.DTOs.Responses;
+using ScanFlowAWS.Application.DTOs.Requests.User;
+using ScanFlowAWS.Application.DTOs.Responses.User;
 using ScanFlowAWS.Application.Exceptions;
+using ScanFlowAWS.Application.UseCases.User.Register.Interfaces;
 
 namespace ScanFlowAWS.Application.UseCases.User.Register
 {

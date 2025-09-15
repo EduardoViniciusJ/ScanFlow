@@ -26,14 +26,12 @@ builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile(new AutoMapping());
 });
-builder.Services.AddScoped<RegisterUseCase>();
+
+
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
-
-builder.Services.AddSingleton(new RekognitionService("us-east-1"));
-builder.Services.AddScoped<IImagemRekognition, ImageRekognitionAdapter>();
-builder.Services.AddScoped<RekognitionUseCase>();
+builder.Services.AddScoped<IRekognitionService, RekognitionAdapter>();
 
 var app = builder.Build();
 

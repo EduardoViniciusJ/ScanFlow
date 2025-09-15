@@ -1,31 +1,30 @@
 ﻿using ScanFlowAWS.Domain.Services;
 using ScanFlowAWS.Domain.ValueObjects;
 using ScanFlowAWS.Infrastructure.Services;
-using System.Linq;
 
 namespace ScanFlowAWS.Infrastructure.Adapters
 {
-    public class ImageRekognitionAdapter : IImagemRekognition
+    public class RekognitionAdapter : IRekognitionService
     {
         private readonly RekognitionService _rekognitionService;
 
-        public ImageRekognitionAdapter(RekognitionService rekognitionService)
+        public RekognitionAdapter(RekognitionService rekognitionService)
         {
             _rekognitionService = rekognitionService;
+        }
+
+        public async Task<List<ImageFace>> AnalyzeFace(byte[] imageBytes)
+        {
+            var images = await _rekognitionService.DetectFacesAsync(imageBytes);
+
+            return images;
         }
 
         public async Task<List<ImageLabel>> AnalyzeImage(byte[] imageBytes)
         {
             var labels = await _rekognitionService.DetectLabelsAsync(imageBytes);
-
-            var result = new List<ImageLabel>();
-
-            foreach (var l in labels)
-            {
-                var imageLabel = new ImageLabel(l.Name, (float)l.Confidence);
-                result.Add(imageLabel);
-            }
-            return result;
+            
+            return labels;
         }
     }
 }

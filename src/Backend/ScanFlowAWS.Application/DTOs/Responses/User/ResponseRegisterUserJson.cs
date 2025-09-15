@@ -1,4 +1,4 @@
-﻿namespace ScanFlowAWS.Application.DTOs.Responses
+﻿namespace ScanFlowAWS.Application.DTOs.Responses.User
 {
     public class ResponseRegisterUserJson
     {
