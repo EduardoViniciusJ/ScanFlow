@@ -2,7 +2,7 @@
 
 namespace ScanFlowAWS.Application.DTOs.Requests
 {
-    public class RequestRekognitionJson
+    public class RequestAnalyzeFacesJson
     {
         public IFormFile ?file { get; set; } 
     }

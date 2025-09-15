@@ -19,5 +19,14 @@ namespace ScanFlowAWS.Infrastructure.Adapters
 
             return images;
         }
+
+        public async Task<CompareceFace> CompareceFaces(byte[] imageBytesSource, byte[] imageBytesTarget)
+        {
+            var compare = await _rekognitionService.CompareceFaceAsync(imageBytesSource, imageBytesTarget);
+
+            return compare;
+        }
+
+
     }
 }

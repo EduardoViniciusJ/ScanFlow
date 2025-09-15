@@ -29,17 +29,42 @@ namespace ScanFlowAWS.Infrastructure.Services
 
             var result = new List<ImageFace>();
 
-            foreach(var faceDetail in response.FaceDetails)
+            foreach (var faceDetail in response.FaceDetails)
             {
                 foreach (var emotion in faceDetail.Emotions.OrderByDescending(e => e.Confidence))
                 {
                     result.Add(new ImageFace(emotion.Type, (float)emotion.Confidence));
                 }
             }
-
             return result;
         }
 
+        public async Task<CompareceFace> CompareceFaceAsync(byte[] imageBytesSource, byte[] imageBytesTarget)
+        {
+            var request = new CompareFacesRequest()
+            {
+                SourceImage = new Image()
+                {
+                    Bytes = new MemoryStream(imageBytesSource)
+                },
+                TargetImage = new Image()
+                {
+                    Bytes = new MemoryStream(imageBytesTarget)
+                },
+                SimilarityThreshold = 90
 
+            };
+
+            var response = await _rekognitionClient.CompareFacesAsync(request);
+
+            var result = new CompareceFace();
+
+            foreach (var f in response.FaceMatches)
+            {
+                result.Similarity = (float)f.Similarity;
+            }
+
+            return result;
+        }
     }
 }
