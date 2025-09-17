@@ -6,6 +6,5 @@ namespace ScanFlowAWS.Domain.Services
     {
         Task<List<ImageFace>> AnalyzeFace(byte[] imageBytes); 
         Task<CompareceFace> CompareceFaces(byte[] imageBytesSource, byte[] imageBytesTarget);
-    
     }
 }

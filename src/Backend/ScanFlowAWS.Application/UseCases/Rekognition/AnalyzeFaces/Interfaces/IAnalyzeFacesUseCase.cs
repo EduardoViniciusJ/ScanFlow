@@ -5,6 +5,7 @@ using ScanFlowAWS.Domain.ValueObjects;
 namespace ScanFlowAWS.Application.UseCases.AmazonRekognition.AnalyzeFaces.Interfaces
 {
     public interface IAnalyzeFacesUseCase
-    {        Task<List<ResponseAnalyzeFacesJson>> Execute(RequestAnalyzeFacesJson request);    
+    {
+        Task<List<ResponseAnalyzeFacesJson>> Execute(RequestAnalyzeFacesJson request);
     }
 }

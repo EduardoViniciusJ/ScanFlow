@@ -25,4 +25,19 @@
     <ProjectReference Include="..\ScanFlowAWS.Domain\ScanFlowAWS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Localization\ResourceMessageTranslations.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceMessageTranslations.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Localization\ResourceMessageTranslations.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceMessageTranslations.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

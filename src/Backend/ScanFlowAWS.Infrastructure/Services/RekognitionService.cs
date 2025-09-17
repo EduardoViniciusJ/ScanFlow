@@ -12,7 +12,6 @@ namespace ScanFlowAWS.Infrastructure.Services
         {
             _rekognitionClient = new AmazonRekognitionClient(Amazon.RegionEndpoint.GetBySystemName(region));
         }
-
         public async Task<List<ImageFace>> DetectFacesAsync(byte[] imageBytes)
         {
             var request = new DetectFacesRequest

@@ -15,6 +15,7 @@ namespace ScanFlowAWS.Infrastructure
             AddDbContextSqlServer(service, configuration);
             AddRekognitionService(service, configuration);
             AddRekognitionAdapter(service);
+            AddTranslatorJsonAdapter(service);
         }
 
 
@@ -37,7 +38,12 @@ namespace ScanFlowAWS.Infrastructure
 
         public static void AddRekognitionAdapter(IServiceCollection service)
         {
-            service.AddScoped<IRekognitionService, RekognitionAdapter>();   
+            service.AddScoped<IRekognitionService, RekognitionAdapter>();
+        }
+
+        public static void AddTranslatorJsonAdapter(IServiceCollection service)
+        {
+            service.AddScoped<ITranslatorJsonService, TranslatorJsonService>();
         }
     }
 }

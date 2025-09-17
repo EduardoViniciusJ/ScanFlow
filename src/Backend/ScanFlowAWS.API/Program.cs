@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using ScanFlowAWS.API.Filters;
+using ScanFlowAWS.API.Middlewares;
 using ScanFlowAWS.Application;
 using ScanFlowAWS.Application.Services;
 using ScanFlowAWS.Application.UseCases.AmazonRekognition;
@@ -31,8 +32,6 @@ builder.Services.AddAutoMapper(cfg =>
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddScoped<IRekognitionService, RekognitionAdapter>();
-
 var app = builder.Build();
 
 
@@ -42,6 +41,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<CultureMiddleware>(); 
 
 app.UseHttpsRedirection();
 
