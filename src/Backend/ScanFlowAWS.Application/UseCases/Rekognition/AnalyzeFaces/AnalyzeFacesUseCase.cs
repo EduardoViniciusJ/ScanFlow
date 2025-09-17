@@ -21,10 +21,10 @@ namespace ScanFlowAWS.Application.UseCases.AmazonRekognition
 
         public async Task<List<ResponseAnalyzeFacesJson>> Execute(RequestAnalyzeFacesJson request)
         {
-            ValidateUseCases(request);
+            ValidateUseCase(request);
 
             using var memoryStream = new MemoryStream();
-            await request.file.CopyToAsync(memoryStream);
+            await request.file!.CopyToAsync(memoryStream);
             var result = await _rekognition.AnalyzeFace(memoryStream.ToArray());
 
             return result
@@ -36,7 +36,7 @@ namespace ScanFlowAWS.Application.UseCases.AmazonRekognition
 
         }
 
-        private void ValidateUseCases(RequestAnalyzeFacesJson request)
+        private void ValidateUseCase(RequestAnalyzeFacesJson request)
         {
             var validator = new AnalyzeFacesUseValidator();
             var result = validator.Validate(request);

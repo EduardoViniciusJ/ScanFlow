@@ -4,7 +4,7 @@ namespace ScanFlowAWS.Application.DTOs.Requests.Rekognition
 {
     public class RequestCompareceFacesJson
     {
-        public IFormFile ?fileSource { get; set; }
-        public IFormFile ?fileTarget { get; set; }
+        public IFormFile? FileSource { get; set; }
+        public IFormFile? FileTarget { get; set; }
     }
 }

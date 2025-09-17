@@ -26,6 +26,7 @@ namespace ScanFlowAWS.API.Controllers
 
         [HttpPost("comparecefaces")]
         [ProducesResponseType(typeof(ResponseCompareceFacesJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> CompareceFaces([FromForm] RequestCompareceFacesJson request, [FromServices] ICompareceFaces useCase)
         {
             var result = await useCase.Execute(request);

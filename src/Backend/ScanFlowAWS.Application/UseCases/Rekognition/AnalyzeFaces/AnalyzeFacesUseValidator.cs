@@ -7,7 +7,7 @@ namespace ScanFlowAWS.Application.UseCases.AmazonRekognition.AnalyzeFaces
     {
         public AnalyzeFacesUseValidator()
         {
-            RuleFor(rekognition => rekognition.file).NotNull().WithMessage("É obrigatório enviar um arquivo de imagem no formato .png ou .jpg.");
+            RuleFor(request => request.file).NotNull().WithMessage("É obrigatório enviar um arquivo de imagem no formato .png ou .jpg.");
         }
 
     }

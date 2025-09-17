@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
 using ScanFlowAWS.Application.UseCases.User.Register;
 using ScanFlowAWS.Application.UseCases.AmazonRekognition;
 using ScanFlowAWS.Application.UseCases.User.Register.Interfaces;
