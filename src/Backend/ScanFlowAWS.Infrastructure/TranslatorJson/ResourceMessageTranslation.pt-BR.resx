@@ -117,14 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MESSAGE_SAD" xml:space="preserve">
-    <value>TRISTE</value>
+  <data name="MESSAGE_ANGRY" xml:space="preserve">
+    <value>BRAVO</value>
   </data>
   <data name="MESSAGE_CALM" xml:space="preserve">
     <value>CALMO</value>
-  </data>
-  <data name="MESSAGE_ANGRY" xml:space="preserve">
-    <value>BRAVO</value>
   </data>
   <data name="MESSAGE_CONFUSED" xml:space="preserve">
     <value>CONFUSO</value>
@@ -132,13 +129,16 @@
   <data name="MESSAGE_DISGUSTED" xml:space="preserve">
     <value>ENOJADO</value>
   </data>
-  <data name="MESSAGE_SURPRISED" xml:space="preserve">
-    <value>SURPRESO</value>
+  <data name="MESSAGE_FEAR" xml:space="preserve">
+    <value>MEDO</value>
   </data>
   <data name="MESSAGE_HAPPY" xml:space="preserve">
     <value>FELIZ</value>
   </data>
-  <data name="MESSAGE_FEAR" xml:space="preserve">
-    <value>MEDO</value>
+  <data name="MESSAGE_SAD" xml:space="preserve">
+    <value>TRISTE</value>
+  </data>
+  <data name="MESSAGE_SURPRISED" xml:space="preserve">
+    <value>SURPRESO</value>
   </data>
 </root>

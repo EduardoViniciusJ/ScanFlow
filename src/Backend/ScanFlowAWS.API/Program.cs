@@ -1,15 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using ScanFlowAWS.API.Filters;
+﻿using ScanFlowAWS.API.Filters;
 using ScanFlowAWS.API.Middlewares;
 using ScanFlowAWS.Application;
 using ScanFlowAWS.Application.Services;
-using ScanFlowAWS.Application.UseCases.AmazonRekognition;
-using ScanFlowAWS.Application.UseCases.User.Register;
-using ScanFlowAWS.Domain.Services;
 using ScanFlowAWS.Infrastructure;
-using ScanFlowAWS.Infrastructure.Adapters;
-using ScanFlowAWS.Infrastructure.DataAcess.Context;
-using ScanFlowAWS.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

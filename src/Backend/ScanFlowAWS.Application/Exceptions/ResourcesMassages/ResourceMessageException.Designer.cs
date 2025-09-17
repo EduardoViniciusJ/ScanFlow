@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ScanFlowAWS.Infrastructure.Localization {
+namespace ScanFlowAWS.Application.Exceptions.ResourcesMassages {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace ScanFlowAWS.Infrastructure.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResourceMessageTranslations {
+    internal class ResourceMessageException {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourceMessageTranslations() {
+        internal ResourceMessageException() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ScanFlowAWS.Infrastructure.Localization {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScanFlowAWS.Infrastructure.Localization.ResourceMessageTranslations", typeof(ResourceMessageTranslations).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScanFlowAWS.Application.Exceptions.ResourcesMassages.ResourceMessageException", typeof(ResourceMessageException).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,29 @@ namespace ScanFlowAWS.Infrastructure.Localization {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a ANGRY.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Please upload the first image (.png or .jpg) for analysis..
         /// </summary>
-        internal static string MESSAGE_ANGRY {
+        internal static string FIRST_IMAGE_EMPTY {
             get {
-                return ResourceManager.GetString("MESSAGE_ANGRY", resourceCulture);
+                return ResourceManager.GetString("FIRST_IMAGE_EMPTY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a CALM.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a It is mandatory to upload an image file (.png or .jpg)..
         /// </summary>
-        internal static string MESSAGE_CALM {
+        internal static string IMAGE_EMPTY {
             get {
-                return ResourceManager.GetString("MESSAGE_CALM", resourceCulture);
+                return ResourceManager.GetString("IMAGE_EMPTY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a CONFUSED.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Please upload the second image (.png or .jpg) for analysis..
         /// </summary>
-        internal static string MESSAGE_CONFUSED {
+        internal static string SECOND_IMAGE_EMPTY {
             get {
-                return ResourceManager.GetString("MESSAGE_CONFUSED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a DISGUSTED.
-        /// </summary>
-        internal static string MESSAGE_DISGUSTED {
-            get {
-                return ResourceManager.GetString("MESSAGE_DISGUSTED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a FEAR.
-        /// </summary>
-        internal static string MESSAGE_FEAR {
-            get {
-                return ResourceManager.GetString("MESSAGE_FEAR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a HAPPY.
-        /// </summary>
-        internal static string MESSAGE_HAPPY {
-            get {
-                return ResourceManager.GetString("MESSAGE_HAPPY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a SAD.
-        /// </summary>
-        internal static string MESSAGE_SAD {
-            get {
-                return ResourceManager.GetString("MESSAGE_SAD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a SURPRISED.
-        /// </summary>
-        internal static string MESSAGE_SURPRISED {
-            get {
-                return ResourceManager.GetString("MESSAGE_SURPRISED", resourceCulture);
+                return ResourceManager.GetString("SECOND_IMAGE_EMPTY", resourceCulture);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using ScanFlowAWS.Application.DTOs.Requests;
+using ScanFlowAWS.Application.Exceptions.ResourcesMassages;
 
 namespace ScanFlowAWS.Application.UseCases.AmazonRekognition.AnalyzeFaces
 {
@@ -7,7 +8,7 @@ namespace ScanFlowAWS.Application.UseCases.AmazonRekognition.AnalyzeFaces
     {
         public AnalyzeFacesUseValidator()
         {
-            RuleFor(request => request.file).NotNull().WithMessage("É obrigatório enviar um arquivo de imagem no formato .png ou .jpg.");
+            RuleFor(request => request.file).NotNull().WithMessage(ResourceMessageException.IMAGE_EMPTY);
         }
 
     }

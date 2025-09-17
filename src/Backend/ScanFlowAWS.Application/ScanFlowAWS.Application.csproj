@@ -21,4 +21,19 @@
     <ProjectReference Include="..\ScanFlowAWS.Domain\ScanFlowAWS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Exceptions\ResourcesMassages\ResourceMessageException.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceMessageException.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Exceptions\ResourcesMassages\ResourceMessageException.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceMessageException.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

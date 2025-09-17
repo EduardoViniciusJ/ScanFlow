@@ -117,28 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MESSAGE_SAD" xml:space="preserve">
-    <value>SAD</value>
+  <data name="FIRST_IMAGE_EMPTY" xml:space="preserve">
+    <value>Por favor, envie a primeira imagem (.png ou .jpg) para a análise</value>
   </data>
-  <data name="MESSAGE_CALM" xml:space="preserve">
-    <value>CALM</value>
+  <data name="IMAGE_EMPTY" xml:space="preserve">
+    <value>É obrigatório enviar um arquivo de imagem (.png ou .jpg).</value>
   </data>
-  <data name="MESSAGE_ANGRY" xml:space="preserve">
-    <value>ANGRY</value>
-  </data>
-  <data name="MESSAGE_CONFUSED" xml:space="preserve">
-    <value>CONFUSED</value>
-  </data>
-  <data name="MESSAGE_DISGUSTED" xml:space="preserve">
-    <value>DISGUSTED</value>
-  </data>
-  <data name="MESSAGE_SURPRISED" xml:space="preserve">
-    <value>SURPRISED</value>
-  </data>
-  <data name="MESSAGE_HAPPY" xml:space="preserve">
-    <value>HAPPY</value>
-  </data>
-  <data name="MESSAGE_FEAR" xml:space="preserve">
-    <value>FEAR</value>
+  <data name="SECOND_IMAGE_EMPTY" xml:space="preserve">
+    <value>Por favor, envie a segunda imagem (.png ou .jpg) para a análise.</value>
   </data>
 </root>

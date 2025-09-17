@@ -1,6 +1,5 @@
 ﻿using ScanFlowAWS.Domain.Services;
-using ScanFlowAWS.Infrastructure.Localization;
-using System.Text.Json;
+using ScanFlowAWS.Infrastructure.TranslatorJson;
 
 namespace ScanFlowAWS.Infrastructure.Services
 {
@@ -8,14 +7,14 @@ namespace ScanFlowAWS.Infrastructure.Services
     {
         private readonly Dictionary<string, string> _translations = new()
         {
-        { "CALM", ResourceMessageTranslations.MESSAGE_CALM },
-        { "SAD", ResourceMessageTranslations.MESSAGE_SAD },
-        { "ANGRY", ResourceMessageTranslations.MESSAGE_ANGRY },
-        { "CONFUSED", ResourceMessageTranslations.MESSAGE_CONFUSED },
-        { "DISGUSTED", ResourceMessageTranslations.MESSAGE_DISGUSTED },
-        { "SURPRISED", ResourceMessageTranslations.MESSAGE_SURPRISED },
-        { "HAPPY", ResourceMessageTranslations.MESSAGE_HAPPY },
-        { "FEAR", ResourceMessageTranslations.MESSAGE_FEAR }
+        { "CALM",ResourceMessageTranslation.MESSAGE_CALM},
+        { "SAD", ResourceMessageTranslation.MESSAGE_SAD },
+        { "ANGRY", ResourceMessageTranslation.MESSAGE_ANGRY },
+        { "CONFUSED", ResourceMessageTranslation.MESSAGE_CONFUSED },
+        { "DISGUSTED", ResourceMessageTranslation.MESSAGE_DISGUSTED },
+        { "SURPRISED", ResourceMessageTranslation.MESSAGE_SURPRISED },
+        { "HAPPY", ResourceMessageTranslation.MESSAGE_HAPPY },
+        { "FEAR", ResourceMessageTranslation.MESSAGE_FEAR }
         };
 
 

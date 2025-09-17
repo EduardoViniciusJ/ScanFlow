@@ -31,12 +31,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ResourceMessageTranslations.resx</DependentUpon>
     </Compile>
+    <Compile Update="TranslatorJson\ResourceMessageTranslation.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceMessageTranslation.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Localization\ResourceMessageTranslations.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceMessageTranslations.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TranslatorJson\ResourceMessageTranslation.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceMessageTranslation.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

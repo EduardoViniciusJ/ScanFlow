@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ScanFlowAWS.Application.DTOs.Requests;
 using ScanFlowAWS.Application.DTOs.Requests.Rekognition;
 using ScanFlowAWS.Application.DTOs.Responses;
 using ScanFlowAWS.Application.DTOs.Responses.Rekognition;
-using ScanFlowAWS.Application.DTOs.Responses.User;
 using ScanFlowAWS.Application.UseCases.AmazonRekognition.AnalyzeFaces.Interfaces;
 using ScanFlowAWS.Application.UseCases.Rekognition.CompareceFaces.Interface;
 
