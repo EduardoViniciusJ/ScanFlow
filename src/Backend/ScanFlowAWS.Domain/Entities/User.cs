@@ -1,12 +1,21 @@
 ﻿namespace ScanFlowAWS.Domain.Entities
 {
-    public class User : EntityBase
+    public class User
     {
+
+        public Guid Id { get; set; }
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public string Username { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
 
-        public ICollection<Photo> Photos { get; set; } = new List<Photo>();
-        public ICollection<Emotion> Emotions { get; set; } = new List<Emotion>();
+        public string PasswordHash = string.Empty;
+
+        private User() { }  
+
+        public User(string email, string passwordHash)
+        {
+            Id = Guid.NewGuid();    
+        }
+
     }
 }

@@ -2,7 +2,7 @@
 using ScanFlowAWS.Application.DTOs.Requests.User;
 using ScanFlowAWS.Domain.Entities;
 
-namespace ScanFlowAWS.Application.Services
+namespace ScanFlowAWS.Application.Services.AutoMapper
 {
     public class AutoMapping : Profile
     {

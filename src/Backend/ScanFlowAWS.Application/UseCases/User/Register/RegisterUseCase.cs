@@ -15,22 +15,12 @@ namespace ScanFlowAWS.Application.UseCases.User.Register
             _mapper = mapper;
         }
 
-        public ResponseRegisterUserJson Execute(RequestRegisterUserJson request)
+        public Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request)
         {
-            ValidateRequest(request);
+             ValidateRequest(request);
 
-            
+          
 
-            return new ResponseRegisterUserJson
-            {
-                Username = request.Username,
-                Email = request.Email 
-            };
-        }
-
-        Task<ResponseRegisterUserJson> IRegisterUseCase.Execute(RequestRegisterUserJson request)
-        {
-            throw new NotImplementedException();
         }
 
         private void ValidateRequest(RequestRegisterUserJson request)
