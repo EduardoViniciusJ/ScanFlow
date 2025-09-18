@@ -1,7 +1,7 @@
 ﻿using ScanFlowAWS.API.Filters;
 using ScanFlowAWS.API.Middlewares;
 using ScanFlowAWS.Application;
-using ScanFlowAWS.Application.Services;
+using ScanFlowAWS.Application.Services.AutoMapper;
 using ScanFlowAWS.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);

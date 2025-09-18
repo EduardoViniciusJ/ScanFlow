@@ -19,7 +19,7 @@ namespace ScanFlowAWS.Application.UseCases.User.Register
         {
              ValidateRequest(request);
 
-          
+            return null;
 
         }
 

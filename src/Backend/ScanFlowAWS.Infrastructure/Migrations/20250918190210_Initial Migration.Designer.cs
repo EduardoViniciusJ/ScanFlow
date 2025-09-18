@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScanFlowAWS.Infrastructure.DataAcess.Context;
 
@@ -11,9 +12,11 @@ using ScanFlowAWS.Infrastructure.DataAcess.Context;
 namespace ScanFlowAWS.Infrastructure.Migrations
 {
     [DbContext(typeof(ScanFlowAWSDbContext))]
-    partial class ScanFlowAWSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250918190210_Initial Migration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
