@@ -1,7 +1,7 @@
 ﻿namespace ScanFlowAWS.Domain.Repositories.User
 {
-    public interface IUserReadOnlyRepository
+    public interface IUnitOfWork
     {
-       
+        public Task Commit();
     }
 }
