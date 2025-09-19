@@ -1,9 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ScanFlowAWS.Domain.Repositories.User;
+using ScanFlowAWS.Domain.Security;
 using ScanFlowAWS.Domain.Services;
 using ScanFlowAWS.Infrastructure.Adapters;
+using ScanFlowAWS.Infrastructure.DataAcess;
 using ScanFlowAWS.Infrastructure.DataAcess.Context;
+using ScanFlowAWS.Infrastructure.DataAcess.Repositories;
+using ScanFlowAWS.Infrastructure.Security;
 using ScanFlowAWS.Infrastructure.Services;
 
 namespace ScanFlowAWS.Infrastructure
@@ -16,8 +21,10 @@ namespace ScanFlowAWS.Infrastructure
             AddRekognitionService(service, configuration);
             AddRekognitionAdapter(service);
             AddTranslatorJsonAdapter(service);
+            AddUnitOfWork(service);
+            AddEncripter(service);
+            AddRepositories(service);
         }
-
 
         public static void AddDbContextSqlServer(IServiceCollection service, IConfiguration configuration)
         {
@@ -44,6 +51,20 @@ namespace ScanFlowAWS.Infrastructure
         public static void AddTranslatorJsonAdapter(IServiceCollection service)
         {
             service.AddScoped<ITranslatorJsonService, TranslatorJsonService>();
+        }
+        public static void AddUnitOfWork(IServiceCollection service)
+        {
+            service.AddScoped<IUnitOfWork, UnitOfWork>();
+        }
+        public static void AddEncripter(IServiceCollection service)
+        {
+            service.AddScoped<IPasswordEncripter, BCryptNet>();
+        }
+
+        public static void AddRepositories(IServiceCollection service)
+        {
+            service.AddScoped<IUserWriteOnlyRepository, UserRepository>();
+            service.AddScoped<IUserReadOnlyRepository, UserRepository>();
         }
     }
 }

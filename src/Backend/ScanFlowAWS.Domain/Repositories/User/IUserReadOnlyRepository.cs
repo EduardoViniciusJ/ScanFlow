@@ -2,6 +2,6 @@
 {
     public interface IUserReadOnlyRepository
     {
-       
+        public Task<Entities.User?> GetByEmailAsync(string email);
     }
 }
