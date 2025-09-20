@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EMAIL_EMPTY" xml:space="preserve">
+    <value>El correo electrónico no puede estar vacío</value>
+  </data>
+  <data name="EMAIL_INVALID" xml:space="preserve">
+    <value>El correo electrónico proporcionado no es válido.</value>
+  </data>
   <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
     <value>Correo electrónico y o contraseña inválidos.</value>
   </data>
@@ -126,7 +132,16 @@
   <data name="IMAGE_EMPTY" xml:space="preserve">
     <value>Es obligatorio enviar un archivo de imagen (.png o .jpg).</value>
   </data>
+  <data name="PASSWORD_EMPTY" xml:space="preserve">
+    <value>La contraseña no puede estar vacía.</value>
+  </data>
+  <data name="PASSWORD_INVALID" xml:space="preserve">
+    <value>La contraseña debe contener al menos 6 caracteres.</value>
+  </data>
   <data name="SECOND_IMAGE_EMPTY" xml:space="preserve">
     <value>Por favor, suba la segunda imagen (.png o .jpg) para el análisis.</value>
+  </data>
+  <data name="USERNAME_EMPTY" xml:space="preserve">
+    <value>El nombre de usuario no puede estar vacío.</value>
   </data>
 </root>

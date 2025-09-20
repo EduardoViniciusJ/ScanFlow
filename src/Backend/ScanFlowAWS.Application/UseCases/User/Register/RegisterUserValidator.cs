@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using ScanFlowAWS.Application.DTOs.Requests.User;
+using ScanFlowAWS.Application.Exceptions.ResourcesMassages;
 
 namespace ScanFlowAWS.Application.UseCases.User.Register
 {
@@ -7,10 +8,11 @@ namespace ScanFlowAWS.Application.UseCases.User.Register
     {
         public RegisterUserValidator()
         {
-            RuleFor(register => register.Username).NotEmpty().WithMessage("O nome de usuário não pode ser vazio.");
-            RuleFor(register => register.Email).NotEmpty().WithMessage("O e-mail não pode ser vazio.");
-            RuleFor(register => register.Email).EmailAddress().WithMessage("O e-mail informado não é válido.");
-            RuleFor(register => register.Password.Length).GreaterThanOrEqualTo(6).WithMessage("A senha deve conter pelo menos 6 caracteres.");
+            RuleFor(register => register.Username).NotEmpty().WithMessage(ResourceMessageException.USERNAME_EMPTY);
+            RuleFor(register => register.Email).NotEmpty().WithMessage(ResourceMessageException.EMAIL_EMPTY);
+            RuleFor(register => register.Email).EmailAddress().WithMessage(ResourceMessageException.EMAIL_INVALID);
+            RuleFor(register => register.Password).MinimumLength(6).WithMessage(ResourceMessageException.PASSWORD_INVALID);
+            RuleFor(register => register.Password).NotEmpty().WithMessage(ResourceMessageException.PASSWORD_EMPTY);
         }
     }
 }

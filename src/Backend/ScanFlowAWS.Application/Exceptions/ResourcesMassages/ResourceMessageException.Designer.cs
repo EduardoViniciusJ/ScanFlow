@@ -61,6 +61,24 @@ namespace ScanFlowAWS.Application.Exceptions.ResourcesMassages {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The email cannot be empty..
+        /// </summary>
+        internal static string EMAIL_EMPTY {
+            get {
+                return ResourceManager.GetString("EMAIL_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The email provided is not valid..
+        /// </summary>
+        internal static string EMAIL_INVALID {
+            get {
+                return ResourceManager.GetString("EMAIL_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Invalid email and or password..
         /// </summary>
         internal static string EMAIL_OR_PASSWORD_INVALID {
@@ -88,11 +106,38 @@ namespace ScanFlowAWS.Application.Exceptions.ResourcesMassages {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The password cannot be empty..
+        /// </summary>
+        internal static string PASSWORD_EMPTY {
+            get {
+                return ResourceManager.GetString("PASSWORD_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The password must contain at least 6 characters..
+        /// </summary>
+        internal static string PASSWORD_INVALID {
+            get {
+                return ResourceManager.GetString("PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Please upload the second image (.png or .jpg) for analysis..
         /// </summary>
         internal static string SECOND_IMAGE_EMPTY {
             get {
                 return ResourceManager.GetString("SECOND_IMAGE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The username cannot be empty..
+        /// </summary>
+        internal static string USERNAME_EMPTY {
+            get {
+                return ResourceManager.GetString("USERNAME_EMPTY", resourceCulture);
             }
         }
     }
