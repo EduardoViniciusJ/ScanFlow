@@ -61,6 +61,15 @@ namespace ScanFlowAWS.Application.Exceptions.ResourcesMassages {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Invalid email and or password..
+        /// </summary>
+        internal static string EMAIL_OR_PASSWORD_INVALID {
+            get {
+                return ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Please upload the first image (.png or .jpg) for analysis..
         /// </summary>
         internal static string FIRST_IMAGE_EMPTY {

@@ -22,10 +22,19 @@ namespace ScanFlowAWS.API.Filters
 
         public void HandleProjectException(ExceptionContext context)
         {
-            if (context.Exception is ErrorOnValidationException exception)
+            if (context.Exception is ScanFlowAWSApplicationException exception)
             {
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Result = new BadRequestObjectResult(new ResponseErrorsJson(exception.ErrorsMessage));
+
+                if(exception is ErrorOnValidationException validationException)
+                {
+                    context.Result = new BadRequestObjectResult(new ResponseErrorsJson(validationException.ErrorsMessage));
+                }
+                else
+                {
+                    context.Result = new BadRequestObjectResult(new ResponseErrorsJson(exception.Message));
+                }
+
             }
         }
 

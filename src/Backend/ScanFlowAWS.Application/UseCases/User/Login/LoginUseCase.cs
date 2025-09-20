@@ -1,5 +1,6 @@
 ﻿using ScanFlowAWS.Application.DTOs.Requests.User;
 using ScanFlowAWS.Application.DTOs.Responses.User;
+using ScanFlowAWS.Application.Exceptions;
 using ScanFlowAWS.Application.UseCases.User.Login.Interfaces;
 using ScanFlowAWS.Domain.Repositories.User;
 using ScanFlowAWS.Domain.Security;
@@ -24,7 +25,7 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
 
             if (user is null || !_passwordEncripter.IsValid(request.Password, user.PasswordHash))
             {
-                throw new Exception(); 
+                throw new InvalidLoginException();
             }
             return new ResponseLoginUserJson
             {
