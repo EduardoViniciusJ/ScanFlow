@@ -46,8 +46,6 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
             {
                 Username = user.Username,
                 AccessToken = accessToken.TokenJWT,
-                RefreshToken = refreshToken.TokenJWT,
-                Expiration = accessToken.Expiration,
             };           
         }
     }
