@@ -8,7 +8,7 @@ namespace ScanFlowAWS.Infrastructure.DataAcess.Context
     {
         public ScanFlowAWSDbContext(DbContextOptions<ScanFlowAWSDbContext> options) : base(options) { }
         public DbSet<User> Users => Set<User>();
-        public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+        public DbSet<Token> Tokens => Set<Token>();
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>(entity =>
@@ -19,11 +19,11 @@ namespace ScanFlowAWS.Infrastructure.DataAcess.Context
                 entity.Property(u => u.PasswordHash).IsRequired();
             });
 
-            builder.Entity<RefreshToken>(entity =>
+            builder.Entity<Token>(entity =>
             {
-                entity.ToTable("RefreshTokens");
+                entity.ToTable("Tokens");
                 entity.HasKey(r => r.Id);
-                entity.Property(r => r.Token).IsRequired();
+                entity.Property(r => r.TokenJWT).IsRequired();
                 entity.HasOne<User>() 
                       .WithMany()
                       .HasForeignKey(r => r.UserId);

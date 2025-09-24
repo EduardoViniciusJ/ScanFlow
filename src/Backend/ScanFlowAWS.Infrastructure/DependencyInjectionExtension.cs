@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ScanFlowAWS.Domain.Repositories.Token;
 using ScanFlowAWS.Domain.Repositories.User;
 using ScanFlowAWS.Domain.Security;
 using ScanFlowAWS.Domain.Services;
@@ -24,6 +25,7 @@ namespace ScanFlowAWS.Infrastructure
             AddUnitOfWork(service);
             AddEncripter(service);
             AddRepositories(service);
+            AddTokenService(service);
         }
 
         public static void AddDbContextSqlServer(IServiceCollection service, IConfiguration configuration)
@@ -65,6 +67,12 @@ namespace ScanFlowAWS.Infrastructure
         {
             service.AddScoped<IUserWriteOnlyRepository, UserRepository>();
             service.AddScoped<IUserReadOnlyRepository, UserRepository>();
+            service.AddScoped<ITokenWriteOnlyRepository, TokenRepository>();
+        }
+
+        public static void AddTokenService(IServiceCollection service)
+        {
+            service.AddScoped<ITokenService,  TokenService>();  
         }
     }
 }
