@@ -68,6 +68,7 @@ namespace ScanFlowAWS.Infrastructure
             service.AddScoped<IUserWriteOnlyRepository, UserRepository>();
             service.AddScoped<IUserReadOnlyRepository, UserRepository>();
             service.AddScoped<ITokenWriteOnlyRepository, TokenRepository>();
+            service.AddScoped<ITokenReadOnlyRepository, TokenRepository>();
         }
 
         public static void AddTokenService(IServiceCollection service)

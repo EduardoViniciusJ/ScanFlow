@@ -23,5 +23,10 @@ namespace ScanFlowAWS.Infrastructure.DataAcess.Repositories
         {
             return await _context.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Email.Equals(email));   
         }
+
+        public async Task<User?> GetByIdAsync(Guid id)
+        {
+            return await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

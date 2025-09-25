@@ -14,16 +14,18 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
         private readonly IUserReadOnlyRepository _userRepository;
         private readonly IPasswordEncripter _passwordEncripter;
         private readonly ITokenService _tokenService;
-        private readonly ITokenWriteOnlyRepository _tokenRepository;
+        private readonly ITokenWriteOnlyRepository _tokenWriteOnlyRepository;
+        private readonly ITokenReadOnlyRepository _tokenRepoitoryReadOnly;
         private readonly IUnitOfWork _unitOfWork;
         
-        public LoginUseCase(IUserReadOnlyRepository userRepository, IPasswordEncripter password, ITokenService tokenService, ITokenWriteOnlyRepository tokenRepository, IUnitOfWork unitOfWork)
+        public LoginUseCase(IUserReadOnlyRepository userRepository, IPasswordEncripter password, ITokenService tokenService, ITokenWriteOnlyRepository tokenWriteOnlyRepository, IUnitOfWork unitOfWork, ITokenReadOnlyRepository tokenReadOnlyRepository)
         {
             _userRepository = userRepository;
             _passwordEncripter = password;
-            _tokenService = tokenService;   
-            _tokenRepository = tokenRepository;
+            _tokenService = tokenService;
+            _tokenWriteOnlyRepository = tokenWriteOnlyRepository;
             _unitOfWork = unitOfWork;
+            _tokenRepoitoryReadOnly = tokenReadOnlyRepository;
         }
 
         public async Task<ResponseLoginUserJson> Execute(RequestLoginUserJson request)
@@ -38,14 +40,15 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
             var accessToken = _tokenService.CreateToken(user);
             var refreshToken = _tokenService.RefreshToken(user);
 
-            await _tokenRepository.AddAsync(accessToken);
-            await _tokenRepository.AddAsync(refreshToken);
+            await _tokenWriteOnlyRepository.AddAsync(accessToken);
+            await _tokenWriteOnlyRepository.AddAsync(refreshToken);
             await _unitOfWork.Commit();
 
             return new ResponseLoginUserJson
             {
                 Username = user.Username,
                 AccessToken = accessToken.TokenJWT,
+                RefreshToken = refreshToken.TokenJWT,
             };           
         }
     }

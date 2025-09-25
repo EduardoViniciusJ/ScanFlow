@@ -6,7 +6,6 @@
         public Guid UserId { get; set; }
         public string TokenJWT {  get; set; } = string.Empty;
         public DateTime Expiration { get; private set; }
-        public bool Revoke { get; set; }    
         public string Type { get; set; }  = string.Empty ;
         private Token() { }
 
@@ -16,12 +15,7 @@
             UserId = userId;
             TokenJWT = token;
             Expiration = expiration;
-            Revoke = false;
             Type = type;    
-        }
-        public void Rekove()
-        {
-            Revoke = true;  
         }
 
     }

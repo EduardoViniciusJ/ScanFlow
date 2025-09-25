@@ -7,6 +7,8 @@ using ScanFlowAWS.Application.UseCases.Rekognition.CompareceFaces.Interface;
 using ScanFlowAWS.Application.UseCases.Rekognition.CompareceFaces;
 using ScanFlowAWS.Application.UseCases.User.Login.Interfaces;
 using ScanFlowAWS.Application.UseCases.User.Login;
+using ScanFlowAWS.Application.UseCases.User.Token.Interfaces;
+using ScanFlowAWS.Application.UseCases.User.Token;
 
 
 namespace ScanFlowAWS.Application
@@ -15,6 +17,7 @@ namespace ScanFlowAWS.Application
     {
         public static void AddApplication(this IServiceCollection service)
         {
+            AddRefreshToken(service);
             AddRegister(service);
             AddRekognition(service);
             AddLogin(service);
@@ -34,6 +37,11 @@ namespace ScanFlowAWS.Application
         {
             service.AddScoped<IAnalyzeFacesUseCase, AnalyzeFacesUseCase>(); 
             service.AddScoped<ICompareceFaces, CompareceFacesUseCase>();    
+        }
+
+        public static void AddRefreshToken(IServiceCollection service)
+        {
+            service.AddScoped<IRefreshTokenUseCase, RefreshTokenUseCase>();    
         }
 
     }

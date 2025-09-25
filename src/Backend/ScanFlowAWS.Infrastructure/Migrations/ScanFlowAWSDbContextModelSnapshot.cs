@@ -31,9 +31,6 @@ namespace ScanFlowAWS.Infrastructure.Migrations
                     b.Property<DateTime>("Expiration")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Revoke")
-                        .HasColumnType("bit");
-
                     b.Property<string>("TokenJWT")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
