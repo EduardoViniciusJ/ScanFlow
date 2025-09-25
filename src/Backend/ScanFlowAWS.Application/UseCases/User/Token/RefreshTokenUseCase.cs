@@ -32,7 +32,7 @@ namespace ScanFlowAWS.Application.UseCases.User.Token
 
             if (token is null || token.Expiration < DateTime.UtcNow || token.Type != "Refresh")
             {
-                throw new InvalidLoginException();
+                throw new Exception();
             }
 
             var user = await _userReadOnlyRepository.GetByIdAsync(token.UserId);
@@ -52,7 +52,6 @@ namespace ScanFlowAWS.Application.UseCases.User.Token
 
             return new ResponseLoginUserJson
             {
-                Username = user.Username,
                 AccessToken = newAccessToken.TokenJWT,
                 RefreshToken = newRefreshToken.TokenJWT
             };

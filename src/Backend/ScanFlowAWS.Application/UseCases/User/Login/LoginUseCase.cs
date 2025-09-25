@@ -46,7 +46,6 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
 
             return new ResponseLoginUserJson
             {
-                Username = user.Username,
                 AccessToken = accessToken.TokenJWT,
                 RefreshToken = refreshToken.TokenJWT,
             };           
