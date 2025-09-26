@@ -32,14 +32,14 @@ namespace ScanFlowAWS.Application.UseCases.User.Token
 
             if (token is null || token.Expiration < DateTime.UtcNow || token.Type != "Refresh")
             {
-                throw new Exception();
+                throw new InvalidTokenExcedption();
             }
 
             var user = await _userReadOnlyRepository.GetByIdAsync(token.UserId);
 
             if (user == null)
             {
-                throw new InvalidLoginException();
+                throw new InvalidTokenExcedption();
             }
 
             var newAccessToken = _tokenService.CreateToken(user);

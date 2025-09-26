@@ -141,6 +141,9 @@
   <data name="SECOND_IMAGE_EMPTY" xml:space="preserve">
     <value>Please upload the second image (.png or .jpg) for analysis.</value>
   </data>
+  <data name="TOKEN_INVALID" xml:space="preserve">
+    <value>Invalid session. Please log in again.</value>
+  </data>
   <data name="USERNAME_EMPTY" xml:space="preserve">
     <value>The username cannot be empty.</value>
   </data>

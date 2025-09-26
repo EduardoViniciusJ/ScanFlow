@@ -15,17 +15,15 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
         private readonly IPasswordEncripter _passwordEncripter;
         private readonly ITokenService _tokenService;
         private readonly ITokenWriteOnlyRepository _tokenWriteOnlyRepository;
-        private readonly ITokenReadOnlyRepository _tokenRepoitoryReadOnly;
         private readonly IUnitOfWork _unitOfWork;
         
-        public LoginUseCase(IUserReadOnlyRepository userRepository, IPasswordEncripter password, ITokenService tokenService, ITokenWriteOnlyRepository tokenWriteOnlyRepository, IUnitOfWork unitOfWork, ITokenReadOnlyRepository tokenReadOnlyRepository)
+        public LoginUseCase(IUserReadOnlyRepository userRepository, IPasswordEncripter password, ITokenService tokenService, ITokenWriteOnlyRepository tokenWriteOnlyRepository, IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _passwordEncripter = password;
             _tokenService = tokenService;
             _tokenWriteOnlyRepository = tokenWriteOnlyRepository;
             _unitOfWork = unitOfWork;
-            _tokenRepoitoryReadOnly = tokenReadOnlyRepository;
         }
 
         public async Task<ResponseLoginUserJson> Execute(RequestLoginUserJson request)
