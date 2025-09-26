@@ -3,6 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using ScanFlowAWS.API.Filters;
 using ScanFlowAWS.API.Middlewares;
 using ScanFlowAWS.Application;
+using ScanFlowAWS.Application.DTOs.Responses;
+using ScanFlowAWS.Application.Exceptions;
+using ScanFlowAWS.Application.Exceptions.ResourcesMassages;
 using ScanFlowAWS.Application.Services.AutoMapper;
 using ScanFlowAWS.Infrastructure;
 using System.Text;
@@ -44,7 +47,22 @@ builder.Services.AddAuthentication(options =>
         ),
         ClockSkew = TimeSpan.Zero 
     };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnChallenge = context =>
+        {
+            context.HandleResponse();
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            return context.Response.WriteAsJsonAsync(
+                new ResponseErrorsJson(new InvalidTokenExceptionLogin().Message)
+            );
+        }
+    };
 });
+
+
+
 
 var app = builder.Build();
 

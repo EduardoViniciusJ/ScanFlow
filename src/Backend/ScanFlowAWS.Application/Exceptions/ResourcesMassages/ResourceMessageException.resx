@@ -144,6 +144,9 @@
   <data name="TOKEN_INVALID" xml:space="preserve">
     <value>Invalid session. Please log in again.</value>
   </data>
+  <data name="TOKEN_INVALID_LOGIN" xml:space="preserve">
+    <value>Invalid session. Please log in.</value>
+  </data>
   <data name="USERNAME_EMPTY" xml:space="preserve">
     <value>The username cannot be empty.</value>
   </data>

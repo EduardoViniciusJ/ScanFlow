@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ScanFlowAWS.Application.DTOs.Requests.Token;
 using ScanFlowAWS.Application.UseCases.User.Token.Interfaces;
 

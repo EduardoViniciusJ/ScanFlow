@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ScanFlowAWS.Application.DTOs.Requests;
 using ScanFlowAWS.Application.DTOs.Requests.Rekognition;
 using ScanFlowAWS.Application.DTOs.Responses;
@@ -11,7 +12,8 @@ namespace ScanFlowAWS.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class RekognitionController : ControllerBase
-    {   
+    {
+        [Authorize]
         [HttpPost("analyzefaces")]
         [ProducesResponseType(typeof(ResponseAnalyzeFacesJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
@@ -22,6 +24,7 @@ namespace ScanFlowAWS.API.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost("comparecefaces")]
         [ProducesResponseType(typeof(ResponseCompareceFacesJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]

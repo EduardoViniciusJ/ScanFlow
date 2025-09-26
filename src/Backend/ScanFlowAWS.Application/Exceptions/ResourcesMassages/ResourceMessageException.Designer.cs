@@ -142,6 +142,15 @@ namespace ScanFlowAWS.Application.Exceptions.ResourcesMassages {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Invalid session. Please log in..
+        /// </summary>
+        internal static string TOKEN_INVALID_LOGIN {
+            get {
+                return ResourceManager.GetString("TOKEN_INVALID_LOGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The username cannot be empty..
         /// </summary>
         internal static string USERNAME_EMPTY {
