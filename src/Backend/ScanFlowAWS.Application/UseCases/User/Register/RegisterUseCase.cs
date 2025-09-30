@@ -25,7 +25,7 @@ namespace ScanFlowAWS.Application.UseCases.User.Register
         /// <param name="mapper">Serviço de mapeamento entre DTO e entidade.</param>
         /// <param name="userRepository">Repositório para persistência de usuários.</param>
         /// <param name="passwordEncripter">Serviço para encriptação de senhas.</param>
-        /// <param name="unitOfWork">Unit of Work para commit das transações.</param>
+        /// <param name="unitOfWork">Unit of Work para salvar no banco de dados.</param>
         public RegisterUseCase(
             IMapper mapper,
             IUserWriteOnlyRepository userRepository,
