@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿```csharp
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ScanFlowAWS.Domain.Entities;
 using ScanFlowAWS.Domain.Services;
@@ -9,15 +10,27 @@ using System.Text;
 
 namespace ScanFlowAWS.Infrastructure.Security
 {
+    /// <summary>
+    /// Serviço responsável por criar tokens JWT de acesso e Refresh Tokens para autenticação.
+    /// </summary>
     public class TokenService : ITokenService
     {
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// Construtor do serviço <see cref="TokenService"/>.
+        /// </summary>
+        /// <param name="configuration">Serviço de configuração para acessar as chaves e parâmetros do JWT.</param>
         public TokenService(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Cria um token de acesso (JWT) para o usuário informado.
+        /// </summary>
+        /// <param name="user">Usuário para quem o token será gerado.</param>
+        /// <returns>Objeto <see cref="Token"/> contendo o JWT, tempo de expiração e tipo "Access".</returns>
         public Token CreateToken(User user)
         {
             var claims = new List<Claim>
@@ -42,11 +55,16 @@ namespace ScanFlowAWS.Infrastructure.Security
                signingCredentials: creds
            );
 
-           var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
             return new Token(user.Id, tokenString, expiration, "Access");
         }
 
+        /// <summary>
+        /// Cria um Refresh Token aleatório para o usuário informado.
+        /// </summary>
+        /// <param name="user">Usuário para quem o Refresh Token será gerado.</param>
+        /// <returns>Objeto <see cref="Token"/> contendo o token aleatório, tempo de expiração e tipo "Refresh".</returns>
         public Token RefreshToken(User user)
         {
             var randomBytes = new byte[32];
@@ -60,3 +78,4 @@ namespace ScanFlowAWS.Infrastructure.Security
         }
     }
 }
+```

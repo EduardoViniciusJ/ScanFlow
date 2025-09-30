@@ -147,6 +147,9 @@
   <data name="TOKEN_INVALID_LOGIN" xml:space="preserve">
     <value>Sessão inválida. Faça o login.</value>
   </data>
+  <data name="UNKNOWN_ERROR" xml:space="preserve">
+    <value>Erro Desconhecido.</value>
+  </data>
   <data name="USERNAME_EMPTY" xml:space="preserve">
     <value>O nome de usuário não pode ser vazio.</value>
   </data>

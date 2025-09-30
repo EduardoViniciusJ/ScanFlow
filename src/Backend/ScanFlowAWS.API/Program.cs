@@ -19,6 +19,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
+
+
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile(new AutoMapping());

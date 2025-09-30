@@ -9,6 +9,10 @@ using ScanFlowAWS.Domain.Services;
 
 namespace ScanFlowAWS.Application.UseCases.User.Login
 {
+    /// <summary>
+    /// Caso de uso responsável pela autenticação de usuários.
+    /// Valida credenciais e gera tokens de acesso e refresh token.
+    /// </summary>
     public class LoginUseCase : ILoginUseCase
     {
         private readonly IUserReadOnlyRepository _userRepository;
@@ -16,8 +20,21 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
         private readonly ITokenService _tokenService;
         private readonly ITokenWriteOnlyRepository _tokenWriteOnlyRepository;
         private readonly IUnitOfWork _unitOfWork;
-        
-        public LoginUseCase(IUserReadOnlyRepository userRepository, IPasswordEncripter password, ITokenService tokenService, ITokenWriteOnlyRepository tokenWriteOnlyRepository, IUnitOfWork unitOfWork)
+
+        /// <summary>
+        /// Construtor do caso de uso <see cref="LoginUseCase"/>.
+        /// </summary>
+        /// <param name="userRepository">Repositório somente leitura de usuários.</param>
+        /// <param name="password">Serviço de validação e encriptação de senha.</param>
+        /// <param name="tokenService">Serviço responsável por criar tokens JWT.</param>
+        /// <param name="tokenWriteOnlyRepository">Repositório para salvar tokens emitidos.</param>
+        /// <param name="unitOfWork">Unit of Work para salvar no banco de dados.</param>
+        public LoginUseCase(
+            IUserReadOnlyRepository userRepository,
+            IPasswordEncripter password,
+            ITokenService tokenService,
+            ITokenWriteOnlyRepository tokenWriteOnlyRepository,
+            IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _passwordEncripter = password;
@@ -26,6 +43,12 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
             _unitOfWork = unitOfWork;
         }
 
+        /// <summary>
+        /// Executa a autenticação de um usuário.
+        /// </summary>
+        /// <param name="request">Objeto contendo email e senha do usuário.</param>
+        /// <returns>Objeto <see cref="ResponseLoginUserJson"/> com tokens de acesso e refresh.</returns>
+        /// <exception cref="InvalidLoginException">Lançada quando o usuário não existe ou a senha é inválida.</exception>
         public async Task<ResponseLoginUserJson> Execute(RequestLoginUserJson request)
         {
             var user = await _userRepository.GetByEmailAsync(request.Email);
@@ -46,7 +69,7 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
             {
                 AccessToken = accessToken.TokenJWT,
                 RefreshToken = refreshToken.TokenJWT,
-            };           
+            };
         }
     }
 }

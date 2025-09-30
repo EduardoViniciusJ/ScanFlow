@@ -151,6 +151,15 @@ namespace ScanFlowAWS.Application.Exceptions.ResourcesMassages {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Unknown Error..
+        /// </summary>
+        internal static string UNKNOWN_ERROR {
+            get {
+                return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The username cannot be empty..
         /// </summary>
         internal static string USERNAME_EMPTY {
