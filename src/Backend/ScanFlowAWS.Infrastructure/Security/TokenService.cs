@@ -1,5 +1,4 @@
-﻿```csharp
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ScanFlowAWS.Domain.Entities;
 using ScanFlowAWS.Domain.Services;
@@ -78,4 +77,4 @@ namespace ScanFlowAWS.Infrastructure.Security
         }
     }
 }
-```
+
