@@ -1,4 +1,4 @@
-# ScanFlowAWS API
+# ScanFlow 
 
 API utilizando **DDD (Domain-Driven Design)** e integração com **AWS Rekognition**.  
 Possui autenticação JWT, refresh tokens e endpoints para análise e comparação de faces.
