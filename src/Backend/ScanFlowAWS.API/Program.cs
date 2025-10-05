@@ -63,7 +63,17 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-
+var allowedOrigins = builder.Configuration["AllowedOrigins:BlazorDev"]!;
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("origins",
+        policy =>
+        {
+            policy.WithOrigins(allowedOrigins)
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 
 var app = builder.Build();
@@ -78,6 +88,8 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<CultureMiddleware>();
 
 app.UseHttpsRedirection();
+
+app.UseCors("origins");
 
 app.UseAuthentication();  
 app.UseAuthorization();  
