@@ -27,7 +27,7 @@ Possui autenticação JWT, refresh tokens e endpoints para análise e comparaç�
   - Refresh token (`/api/refreshtoken`)
 
   - Analisar emoções de faces (`/api/rekognition/analyzefaces`)
-  - Comparar faces (`/api/rekognition/comparecefaces`)
+  - Comparar faces (`/api/rekognition/compareimages`)
 
   - Validações com FluentValidation
   - Tratamento de erros customizado (Exception Filter)
