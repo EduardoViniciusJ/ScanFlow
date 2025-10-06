@@ -58,8 +58,8 @@ namespace ScanFlowAWS.Infrastructure.Services
         /// </summary>
         /// <param name="imageBytesSource">Imagem de origem em byte array.</param>
         /// <param name="imageBytesTarget">Imagem alvo em byte array.</param>
-        /// <returns>Objeto <see cref="CompareceFace"/> com a similaridade calculada entre as imagens.</returns>
-        public async Task<CompareceFace> CompareceFaceAsync(byte[] imageBytesSource, byte[] imageBytesTarget)
+        /// <returns>Objeto <see cref="CompareImage"/> com a similaridade calculada entre as imagens.</returns>
+        public async Task<CompareImage> CompareceFaceAsync(byte[] imageBytesSource, byte[] imageBytesTarget)
         {
             var request = new CompareFacesRequest()
             {
@@ -76,7 +76,7 @@ namespace ScanFlowAWS.Infrastructure.Services
 
             var response = await _rekognitionClient.CompareFacesAsync(request);
 
-            var result = new CompareceFace();
+            var result = new CompareImage();
 
             foreach (var f in response.FaceMatches)
             {

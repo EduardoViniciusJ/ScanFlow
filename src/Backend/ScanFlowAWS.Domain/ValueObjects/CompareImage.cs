@@ -1,6 +1,6 @@
 ﻿namespace ScanFlowAWS.Domain.ValueObjects
 {
-    public class CompareceFace
+    public class CompareImage
     {
         public float Similarity { get; set; } 
     }

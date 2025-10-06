@@ -9,15 +9,15 @@ namespace ScanFlowAWS.Application.UseCases.Rekognition.CompareceFaces
     /// <summary>
     /// Caso de uso responsável por comparar duas imagens e determinar se as imagens são iguais.
     /// </summary>
-    public class CompareceFacesUseCase : ICompareceFaces
+    public class CompareImagensUseCase : ICompareceFaces
     {
         private readonly IRekognitionService _rekognition;
 
         /// <summary>
-        /// Construtor da classe <see cref="CompareceFacesUseCase"/>.
+        /// Construtor da classe <see cref="CompareImagensUseCase"/>.
         /// </summary>
         /// <param name="rekognition">Serviço responsável pela comunicação com a API da Amazon Rekognition.</param>
-        public CompareceFacesUseCase(IRekognitionService rekognition)
+        public CompareImagensUseCase(IRekognitionService rekognition)
         {
             _rekognition = rekognition;
         }
@@ -38,7 +38,7 @@ namespace ScanFlowAWS.Application.UseCases.Rekognition.CompareceFaces
             await request.FileSource!.CopyToAsync(memoryStreamSource);
             await request.FileTarget!.CopyToAsync(memoryStreamTarget);
 
-            var result = _rekognition.CompareceFaces(memoryStreamSource.ToArray(), memoryStreamTarget.ToArray());
+            var result = _rekognition.CompareImages(memoryStreamSource.ToArray(), memoryStreamTarget.ToArray());
 
             var response = new ResponseCompareceFacesJson()
             {
@@ -54,7 +54,7 @@ namespace ScanFlowAWS.Application.UseCases.Rekognition.CompareceFaces
         /// <exception cref="ErrorOnValidationException">Lançada se algum dos arquivos ou regras de validação estiverem incorretos.</exception>
         private void ValidateUseCase(RequestCompareceFacesJson request)
         {
-            var validator = new CompareceFacesUseValidator();
+            var validator = new CompareImagensValidator();
             var result = validator.Validate(request);
 
             if (!result.IsValid)

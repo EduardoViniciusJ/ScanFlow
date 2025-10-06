@@ -36,7 +36,7 @@ namespace ScanFlowAWS.Application
         public static void AddRekognition(IServiceCollection service)
         {
             service.AddScoped<IAnalyzeFacesUseCase, AnalyzeFacesUseCase>(); 
-            service.AddScoped<ICompareceFaces, CompareceFacesUseCase>();    
+            service.AddScoped<ICompareceFaces, CompareImagensUseCase>();    
         }
 
         public static void AddRefreshToken(IServiceCollection service)
