@@ -46,10 +46,10 @@ namespace ScanFlowAWS.API.Controllers
         /// <returns>Retorna a verificação em um objeto <see cref="ResponseCompareceFacesJson"/>com a porcentagem da comparação ou um <see cref="ResponseErrorsJson"/>em caso de erro.</returns>
 
         [Authorize]
-        [HttpPost("compareimagens")] // POST api/rekognition/comparecefaces
+        [HttpPost("compareimages")] // POST api/rekognition/comparecefaces
         [ProducesResponseType(typeof(ResponseCompareceFacesJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> CompareImagens([FromForm] RequestCompareceFacesJson request, [FromServices] ICompareceFaces useCase)
+        public async Task<IActionResult> CompareImages([FromForm] RequestCompareceFacesJson request, [FromServices] ICompareceFaces useCase)
         {
             var result = await useCase.Execute(request);
             return Ok(result);
