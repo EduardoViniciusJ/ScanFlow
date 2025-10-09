@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/login"
 @inject ILoginService LoginService
 @inject NavigationManager Navigation
 
@@ -58,7 +58,7 @@
 
     private async Task DoLogin()
     {
-        var result = await LoginService.LoginAsync(new LoginRequestModel
+        var result = await LoginService.LoginAsync(new LoginFormModel
         {
             Email = loginForm.Email,
             Password = loginForm.Password

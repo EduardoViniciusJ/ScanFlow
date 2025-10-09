@@ -1,0 +1,59 @@
+﻿@page "/register"
+@inject IRegisterService RegisterService
+@inject NavigationManager Navigation
+
+<PageTitle>Register</PageTitle>
+
+<div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="card shadow p-5" style="width: 100%; max-width: 400px;">
+        <h3 class="text-center">Register</h3>
+
+        <EditForm Model="registerForm" OnValidSubmit="DoRegister">
+            <FluentValidationValidator />
+
+            <div class="mb-3">
+                <label>Name</label>
+                <InputText @bind-Value="registerForm.Name" class="form-control" />
+                <ValidationMessage For="@(() => registerForm.Name)" class="text-danger small" />
+            </div>
+
+            <div class="mb-3">
+                <label>Email</label>
+                <InputText @bind-Value="registerForm.Email" class="form-control" />
+                <ValidationMessage For="@(() => registerForm.Email)" class="text-danger small" />
+            </div>
+
+            <div class="mb-3">
+                <label>Password</label>
+                <InputText @bind-Value="registerForm.Password" type="password" class="form-control" />
+                <ValidationMessage For="@(() => registerForm.Password)" class="text-danger small" />
+            </div>
+
+            <div class="mb-3">
+                <label>Confirm Password</label>
+                <InputText @bind-Value="registerForm.ConfirmPassword" type="password" class="form-control" />
+                <ValidationMessage For="@(() => registerForm.ConfirmPassword)" class="text-danger small" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+        </EditForm>
+
+        <div class="text-center mt-3">
+            <small>Already have an account? <a href="/">Login here</a></small>
+        </div>
+    </div>
+</div>
+
+@code {
+    private RegisterFormModel registerForm = new();
+
+    private async Task DoRegister()
+    {
+        var success = await RegisterService.RegisterAsync(registerForm);
+
+        if (success)
+            Navigation.NavigateTo("/");
+        else
+            Console.WriteLine("Erro ao registrar usuário");
+    }
+}

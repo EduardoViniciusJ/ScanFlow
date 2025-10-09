@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using ScanFlowAWS.Web.Models;
 
 namespace ScanFlowAWS.Web.Validators
 {

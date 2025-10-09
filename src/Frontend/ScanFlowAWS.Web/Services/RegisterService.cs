@@ -4,26 +4,23 @@ using System.Net.Http.Json;
 
 namespace ScanFlowAWS.Web.Services
 {
-    public class LoginService : ILoginService
+    public class RegisterService : IRegisterService
     {
         private readonly HttpClient _httpClient;
 
-        public LoginService(HttpClient httpClient)
+        public RegisterService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-        }   
+        }
 
-
-        public async Task<bool> LoginAsync(LoginFormModel loginForm)
+        public async Task<bool> RegisterAsync(RegisterFormModel registerForm)
         {
-            var response = await _httpClient.PostAsJsonAsync("api/user/login", loginForm);
-
+            var response = await _httpClient.PostAsJsonAsync("api/user/register", registerForm);
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content.ReadAsStringAsync();
                 throw new ApplicationException(error);
             }
-
             return response.IsSuccessStatusCode;
         }
     }
