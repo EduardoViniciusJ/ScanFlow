@@ -1,8 +1,8 @@
 ﻿using ScanFlowAWS.Web.Models;
 
-namespace ScanFlowAWS.Web.Services
+namespace ScanFlowAWS.Web.Services.Interfaces
 {
-    public interface IAuthService
+    public interface ILoginService
     {
         Task<LoginResponseModel> LoginAsync(LoginRequestModel loginRequest);
     }

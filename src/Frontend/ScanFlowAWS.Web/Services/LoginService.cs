@@ -1,13 +1,14 @@
 ﻿using ScanFlowAWS.Web.Models;
+using ScanFlowAWS.Web.Services.Interfaces;
 using System.Net.Http.Json;
 
 namespace ScanFlowAWS.Web.Services
 {
-    public class AuthService : IAuthService
+    public class LoginService : ILoginService
     {
         private readonly HttpClient _httpClient;
 
-        public AuthService(HttpClient httpClient)
+        public LoginService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
@@ -15,7 +16,7 @@ namespace ScanFlowAWS.Web.Services
 
         public async Task<LoginResponseModel> LoginAsync(LoginRequestModel loginRequest)
         {
-            var response = await _httpClient.PostAsJsonAsync("api/auth/login", loginRequest);
+            var response = await _httpClient.PostAsJsonAsync("api/user/login", loginRequest);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -23,8 +24,14 @@ namespace ScanFlowAWS.Web.Services
                 throw new ApplicationException(error);
             }
 
-            return await response.Content.ReadFromJsonAsync<LoginResponseModel>();
+            var result = await response.Content.ReadFromJsonAsync<LoginResponseModel>();
 
+            if(result == null)
+            {
+                throw new ApplicationException("Invalid response from server");
+            }
+
+            return result;
         }
     }
 }
