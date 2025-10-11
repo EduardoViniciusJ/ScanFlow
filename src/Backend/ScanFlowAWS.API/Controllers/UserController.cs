@@ -62,7 +62,7 @@ namespace ScanFlowAWS.API.Controllers
             [FromBody] RequestLoginUserJson request        
         )
         {
-            var result = await useCase.Execute(request);
+            var result = await useCase.Execute(request, HttpContext);
             return Ok(result); 
         }
     }

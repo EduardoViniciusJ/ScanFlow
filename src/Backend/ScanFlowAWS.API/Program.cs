@@ -12,20 +12,12 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
-
-
-builder.Services.AddAutoMapper(cfg =>
-{
-    cfg.AddProfile(new AutoMapping());
-});
-
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new AutoMapping()));
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -36,7 +28,7 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    options.TokenValidationParameters = new TokenValidationParameters()
+    options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidateAudience = true,
@@ -44,10 +36,8 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)
-        ),
-        ClockSkew = TimeSpan.Zero 
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+        ClockSkew = TimeSpan.Zero
     };
 
     options.Events = new JwtBearerEvents
@@ -59,26 +49,31 @@ builder.Services.AddAuthentication(options =>
             return context.Response.WriteAsJsonAsync(
                 new ResponseErrorsJson(new InvalidTokenExceptionLogin().Message)
             );
+        },
+        OnMessageReceived = context =>
+        {
+            if (context.Request.Cookies.TryGetValue("accessToken", out var accessToken))
+            {
+                context.Token = accessToken;
+            }
+            return Task.CompletedTask;
         }
     };
 });
 
-var allowedOrigins = builder.Configuration["AllowedOrigins:BlazorDev"]!;
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("origins",
-        policy =>
-        {
-            policy.WithOrigins(allowedOrigins)
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
+    options.AddPolicy("origins", policy =>
+    {
+        policy.WithOrigins(builder.Configuration["AllowedOrigins:BlazorDev"]!)
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
 });
-
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -86,14 +81,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<CultureMiddleware>();
-
 app.UseHttpsRedirection();
-
 app.UseCors("origins");
-
-app.UseAuthentication();  
-app.UseAuthorization();  
-
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
-
 app.Run();

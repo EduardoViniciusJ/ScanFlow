@@ -1,4 +1,5 @@
-﻿using ScanFlowAWS.Application.DTOs.Requests.Token;
+﻿using Microsoft.AspNetCore.Http;
+using ScanFlowAWS.Application.DTOs.Requests.Token;
 using ScanFlowAWS.Application.DTOs.Responses.User;
 using ScanFlowAWS.Application.Exceptions;
 using ScanFlowAWS.Application.UseCases.User.Token.Interfaces;
@@ -12,7 +13,7 @@ namespace ScanFlowAWS.Application.UseCases.User.Token
     /// Caso de uso responsável por atualizar tokens de acesso (Access Token)
     /// utilizando um Refresh Token válido.
     /// </summary>
-    public class RefreshTokenUseCase : IRefreshTokenUseCase
+    public class TokenUseCase : ITokenUseCase
     {
         private readonly ITokenReadOnlyRepository _tokenReadOnlyRepository;
         private readonly ITokenWriteOnlyRepository _tokenWriteOnlyRepository;
@@ -21,14 +22,14 @@ namespace ScanFlowAWS.Application.UseCases.User.Token
         private readonly IUnitOfWork _unitOfWork;
 
         /// <summary>
-        /// Construtor do caso de uso <see cref="RefreshTokenUseCase"/>.
+        /// Construtor do caso de uso <see cref="TokenUseCase"/>.
         /// </summary>
         /// <param name="tokenReadOnlyRepository">Repositório para leitura de tokens existentes.</param>
         /// <param name="userReadOnlyRepository">Repositório para leitura de usuários.</param>
         /// <param name="tokenService">Serviço responsável por criar tokens JWT e refresh tokens.</param>
         /// <param name="unitOfWork">Unit of Work para salvar no banco de dados.</param>
         /// <param name="tokenWriteOnlyRepository">Repositório para gravação e exclusão de tokens.</param>
-        public RefreshTokenUseCase(
+        public TokenUseCase(
             ITokenReadOnlyRepository tokenReadOnlyRepository,
             IUserReadOnlyRepository userReadOnlyRepository,
             ITokenService tokenService,
@@ -42,47 +43,47 @@ namespace ScanFlowAWS.Application.UseCases.User.Token
             _tokenWriteOnlyRepository = tokenWriteOnlyRepository;
         }
 
-        /// <summary>
-        /// Executa a atualização do token de acesso usando um Refresh Token.
-        /// </summary>
-        /// <param name="request">Objeto contendo o Refresh Token enviado pelo cliente.</param>
-        /// <returns>Objeto <see cref="ResponseLoginUserJson"/> contendo o novo Access Token e Refresh Token.</returns>
-        /// <exception cref="InvalidTokenException">
-        /// Lançada quando o Refresh Token é inválido, expirado ou não corresponde a um usuário existente.
-        /// </exception>
-        public async Task<ResponseLoginUserJson> Execute(RequestTokenJson request)
+        public async Task Execute(HttpContext context)
         {
-            // Busca o token no repositório
-            var token = await _tokenReadOnlyRepository.GetByTokenAsync(request.RefreshToken);
-
-            // Valida se o token existe, não expirou e é do tipo Refresh
-            if (token is null || token.Expiration < DateTime.UtcNow || token.Type != "Refresh")
+            if (!context.Request.Cookies.TryGetValue("refreshToken", out var refreshToken))
             {
                 throw new InvalidTokenException();
             }
 
-            // Busca o usuário relacionado ao token
+            var token = await _tokenReadOnlyRepository.GetByTokenAsync(refreshToken!);
+
+            if (token is null || token.Expiration < DateTime.UtcNow || token.Type != "Refresh")
+                throw new InvalidTokenException();
+
             var user = await _userReadOnlyRepository.GetByIdAsync(token.UserId);
             if (user == null)
-            {
                 throw new InvalidTokenException();
-            }
 
-            // Gera novos tokens
             var newAccessToken = _tokenService.CreateToken(user);
             var newRefreshToken = _tokenService.RefreshToken(user);
 
-            // Remove o token antigo e salva os novos
             _tokenWriteOnlyRepository.Delete(token);
             await _tokenWriteOnlyRepository.AddAsync(newAccessToken);
-            await _tokenWriteOnlyRepository.AddAsync(newRefreshToken); 
+            await _tokenWriteOnlyRepository.AddAsync(newRefreshToken);
             await _unitOfWork.Commit();
 
-            return new ResponseLoginUserJson
+            // Atualiza os cookies
+            context.Response.Cookies.Append("accessToken", newAccessToken.TokenJWT, new CookieOptions
             {
-                AccessToken = newAccessToken.TokenJWT,
-                RefreshToken = newRefreshToken.TokenJWT
-            };
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = newAccessToken.Expiration
+            });
+
+            context.Response.Cookies.Append("refreshToken", newRefreshToken.TokenJWT, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = newRefreshToken.Expiration
+            });
         }
+
     }
 }

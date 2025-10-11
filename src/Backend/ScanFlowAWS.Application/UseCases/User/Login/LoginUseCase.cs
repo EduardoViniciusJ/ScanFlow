@@ -1,4 +1,5 @@
-﻿using ScanFlowAWS.Application.DTOs.Requests.User;
+﻿using Microsoft.AspNetCore.Http;
+using ScanFlowAWS.Application.DTOs.Requests.User;
 using ScanFlowAWS.Application.DTOs.Responses.User;
 using ScanFlowAWS.Application.Exceptions;
 using ScanFlowAWS.Application.UseCases.User.Login.Interfaces;
@@ -6,6 +7,7 @@ using ScanFlowAWS.Domain.Repositories.Token;
 using ScanFlowAWS.Domain.Repositories.User;
 using ScanFlowAWS.Domain.Security;
 using ScanFlowAWS.Domain.Services;
+using System.Net.Http;
 
 namespace ScanFlowAWS.Application.UseCases.User.Login
 {
@@ -49,7 +51,7 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
         /// <param name="request">Objeto contendo email e senha do usuário.</param>
         /// <returns>Objeto <see cref="ResponseLoginUserJson"/> com tokens de acesso e refresh.</returns>
         /// <exception cref="InvalidLoginException">Lançada quando o usuário não existe ou a senha é inválida.</exception>
-        public async Task<ResponseLoginUserJson> Execute(RequestLoginUserJson request)
+        public async Task<ResponseLoginUserJson> Execute(RequestLoginUserJson request, HttpContext context)
         {
             var user = await _userRepository.GetByEmailAsync(request.Email);
 
@@ -65,10 +67,28 @@ namespace ScanFlowAWS.Application.UseCases.User.Login
             await _tokenWriteOnlyRepository.AddAsync(refreshToken);
             await _unitOfWork.Commit();
 
+            context.Response.Cookies.Append("accessToken", accessToken.TokenJWT, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = accessToken.Expiration
+            });
+
+            context.Response.Cookies.Append("refreshToken", refreshToken.TokenJWT, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = refreshToken.Expiration
+            });
+
+
             return new ResponseLoginUserJson
             {
-                AccessToken = accessToken.TokenJWT,
-                RefreshToken = refreshToken.TokenJWT,
+                Username = user.Username,
+                Email = user.Email,
+                Message = "Login realizado com sucesso!"
             };
         }
     }

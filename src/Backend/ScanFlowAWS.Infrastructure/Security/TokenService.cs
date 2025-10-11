@@ -44,7 +44,7 @@ namespace ScanFlowAWS.Infrastructure.Security
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expiration = DateTime.UtcNow.AddMinutes(3);
+            var expiration = DateTime.UtcNow.AddMinutes(1);
 
             var token = new JwtSecurityToken(
                issuer: issuer,
@@ -71,7 +71,7 @@ namespace ScanFlowAWS.Infrastructure.Security
             rng.GetBytes(randomBytes);
             var tokenString = Convert.ToBase64String(randomBytes);
 
-            var expiration = DateTime.UtcNow.AddMinutes(5);
+            var expiration = DateTime.UtcNow.AddMinutes(1);
 
             return new Token(user.Id, tokenString, expiration, "Refresh");
         }
