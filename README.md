@@ -1,7 +1,7 @@
 # ScanFlow
 
-**ScanFlow** é um projeto full stack desenvolvido em **.NET** com **Blazor WebAssembly** no frontend e **ASP.NET Core Web API** no backend.  
-O sistema permite análise e comparação de faces utilizando o serviço **AWS Rekognition**, com autenticação segura via **JWT** e suporte a **refresh tokens**.  
+**ScanFlow** é uma aplicação full stack em **.NET** com **Blazor WebAssembly** no frontend e **ASP.NET Core Web API** no backend, seguindo os princípios de **DDD (Domain-Driven Design)**.  
+O sistema permite **análise de faces e comparação de imagens** utilizando o serviço **AWS Rekognition**, com autenticação segura via **JWT** e suporte a **refresh tokens**.
 
 O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** para estilização e **FluentValidation** para validação de formulários.
 
@@ -10,6 +10,8 @@ O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** p
 ## Tecnologias Utilizadas
 
 ### Backend
+- **.NET 8**
+- **ASP.NET CORE Web API**
 - **AWS Rekognition**
 - **JWT Authentication**
 - **BCrypt**
