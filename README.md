@@ -1,35 +1,63 @@
-# ScanFlow 
+# ScanFlow
 
-API utilizando **DDD (Domain-Driven Design)** e integração com **AWS Rekognition**.  
-Possui autenticação JWT, refresh tokens e endpoints para análise e comparação de faces.
+**ScanFlow** é um projeto full stack desenvolvido em **.NET** com **Blazor WebAssembly** no frontend e **ASP.NET Core Web API** no backend.  
+O sistema permite análise e comparação de faces utilizando o serviço **AWS Rekognition**, com autenticação segura via **JWT** e suporte a **refresh tokens**.  
+
+O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** para estilização e **FluentValidation** para validação de formulários.
 
 ---
 
-## Tecnologias
+## Tecnologias Utilizadas
 
-- .NET 8 / ASP.NET Core Web API
-- BCrypt
-- EntityFramework
-- C#
-- AWS Rekognition
-- JWT Authentication
-- AutoMapper
-- FluentValidation
-- Swagger (OpenAPI)
-- Git/GitHub
+### Backend
+- **AWS Rekognition**
+- **JWT Authentication**
+- **BCrypt**
+- **Entity Framework Core**
+- **AutoMapper**
+- **FluentValidation**
+- **SQL Server**
+- **Git/GitHub**
+
+### Frontend
+- **Blazor WebAssembly**
+- **Bootstrap**
+- **FluentValidation**
+- **Blazored.FluentValidation**
 
 ---
 
 ## Funcionalidades
 
-  - Registro de usuários (`/api/user/register`)
-  - Login de usuários (`/api/user/login`)
-  - Refresh token (`/api/refreshtoken`)
+### Autenticação e Usuários
+- Registro de usuários com validação de credenciais.
+- Login com JWT e refresh tokens.
+- Atualização de tokens de acesso via refresh token.
 
-  - Analisar emoções de faces (`/api/rekognition/analyzefaces`)
-  - Comparar faces (`/api/rekognition/compareimages`)
+### Análise de Faces
+- Upload de imagens para análise facial individual.
+- Comparação de duas imagens para verificar semelhança.
+- Integração com **AWS Rekognition** para detecção e comparação de faces.
+- Resultados exibidos no frontend Blazor de forma interativa.
 
-  - Validações com FluentValidation
-  - Tratamento de erros customizado (Exception Filter)
-  - Tradução de emoções.
-  - Middleware de cultura para suporte a `Accept-Language`
+### Frontend Blazor
+- Interface responsiva usando **Bootstrap**.
+- Validação de formulários com **FluentValidation**.
+- Comunicação com a API backend via HttpClient.
+
+---
+
+## Endpoints Principais do Backend
+
+### Usuários
+- `POST /api/user/register` → Registrar um novo usuário.  
+- `POST /api/user/login` → Autenticar usuário e gerar JWT.  
+
+### Tokens
+- `POST /api/token/refresh` → Atualizar token de acesso usando refresh token.
+
+### Rekognition
+- `POST /api/rekognition/analyzefaces` → Analisar características faciais de uma imagem.  
+- `POST /api/rekognition/compareimages` → Comparar duas imagens para verificar semelhança.  
+
+> Todos os endpoints de Rekognition exigem autenticação (`[Authorize]`).
