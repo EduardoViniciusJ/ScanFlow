@@ -73,6 +73,7 @@ namespace ScanFlowAWS.Application.UseCases.User.Register
 
             if (!result.IsValid)
             {
+
                 var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
                 throw new ErrorOnValidationException(errorMessages);
             }
