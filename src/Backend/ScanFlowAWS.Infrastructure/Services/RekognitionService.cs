@@ -53,6 +53,7 @@ namespace ScanFlowAWS.Infrastructure.Services
             return result;
         }
 
+
         /// <summary>
         /// Compara duas imagens e retorna o percentual de similaridade entre as faces detectadas.
         /// </summary>

@@ -6,17 +6,10 @@ using System.Net;
 
 namespace ScanFlowAWS.API.Filters
 {
-    /// <summary>
-    /// Filtro global de exceções da API.
-    /// Intercepta exceções lançadas durante a execução da aplicação e
-    /// transforma em respostas HTTP.
-    /// </summary>  
+
     public class ExceptionFilter : IExceptionFilter
     {
-        /// <summary>
-        /// Método disparado automaticamente quando ocorre uma exceção em algum endpoint.
-        /// </summary>
-        /// <param name="context">Exceção capturada.</param>
+
         public void OnException(ExceptionContext context)
         {
             if (context.Exception is ScanFlowAWSApplicationException)
@@ -24,17 +17,8 @@ namespace ScanFlowAWS.API.Filters
                 // Se a exceção for uma exceção da aplicação customizada, trata de forma específica
                 HandleProjectException(context);
             }
-            else
-            {
-                // Caso contrário, pode ser tratado como erro desconhecido
-                ThrowUnknowException(context);
-            }
         }
 
-        /// <summary>
-        /// Trata exceções customizadas.
-        /// </summary>
-        /// <param name="context">Exceção capturada.</param>
         public void HandleProjectException(ExceptionContext context)
         {
             if (context.Exception is ScanFlowAWSApplicationException exception)
@@ -56,10 +40,6 @@ namespace ScanFlowAWS.API.Filters
             }
         }
 
-        /// <summary>
-        /// Trata exceções não customizadas.
-        /// </summary>
-        /// <param name="context">Contexto da exceção.</param>
         public void ThrowUnknowException(ExceptionContext context)
         {
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

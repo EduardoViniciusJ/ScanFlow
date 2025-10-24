@@ -22,6 +22,7 @@ namespace ScanFlowAWS.API.Middlewares
 
             if (!string.IsNullOrWhiteSpace(acceptLanguageHeader))
             {
+
                 var requestCulture = acceptLanguageHeader.Split(',').FirstOrDefault()?.Split(';').FirstOrDefault();
 
                 if (!string.IsNullOrWhiteSpace(requestCulture))

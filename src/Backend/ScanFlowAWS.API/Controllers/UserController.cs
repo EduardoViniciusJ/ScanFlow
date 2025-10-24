@@ -7,28 +7,12 @@ using ScanFlowAWS.Application.UseCases.User.Register.Interfaces;
 
 namespace ScanFlowAWS.API.Controllers
 {
-    /// <summary>
-    /// Controller responsável pelo gerenciamento de usuários,
-    /// </summary>
-    
-     
+ 
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        /// <summary>
-        /// Registra um novo usuário no sistema.
-        /// </summary>
-        /// <param name="useCase">
-        /// Caso de uso responsável pela lógica de registro de usuários.
-        /// </param>
-        /// <param name="request">
-        /// Objeto contendo os dados necessários para registrar um novo usuário.
-        /// </param>
-        /// <returns>
-        /// Retorna <see cref="ResponseRegisterUserJson"/> em caso de sucesso (201 Created),
-        /// ou <see cref="ResponseErrorsJson"/> em caso de falha de validação (400 Bad Request).
-        /// </returns>
+
         [HttpPost("register")] // Endpoint: POST api/user/register
         [ProducesResponseType(typeof(ResponseRegisterUserJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
@@ -41,19 +25,7 @@ namespace ScanFlowAWS.API.Controllers
             return Created(string.Empty, result); 
         }
 
-        /// <summary>
-        /// Autentica e faz o login de um usuário já registrado no sistema.
-        /// </summary>
-        /// <param name="useCase">
-        /// Caso de uso responsável pela lógica de login de usuários.
-        /// </param>
-        /// <param name="request">
-        /// Objeto contendo as credenciais de login.
-        /// </param>
-        /// <returns>
-        /// Retorna <see cref="ResponseLoginUserJson"/> em caso de sucesso (200 OK),
-        /// ou <see cref="ResponseErrorsJson"/> em caso de falha de autenticação (401 Unauthorized).
-        /// </returns>
+
         [HttpPost("login")] // Endpoint: POST api/user/login
         [ProducesResponseType(typeof(ResponseLoginUserJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status401Unauthorized)]

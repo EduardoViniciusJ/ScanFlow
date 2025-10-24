@@ -9,22 +9,11 @@ using ScanFlowAWS.Application.UseCases.Rekognition.CompareceFaces.Interface;
 
 namespace ScanFlowAWS.API.Controllers
 {
-    /// <summary>
-    /// Controller responsável por expor os endpoints relacionados ao Amazon Rekognition, 
-    /// como análise de rostos e comparação de faces. 
-    /// </summary>
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class RekognitionController : ControllerBase
     {
-        /// <summary>
-        /// Analisa as características faciais de uma imagem enviada pelo usuário.
-        /// </summary>
-        /// <param name="request">A imagem enviada pelo usuário</param>
-        /// <param name="useCase">Caso de uso resposável pele lógica de análise</param>
-        /// <returns>Retorna análise da imagem em um objeto <see cref="ResponseAnalyzeFacesJson"/> com os detalhes da análise ou um <see cref="ResponseErrorsJson"/> em caso de erro.</returns>
-       
         [Authorize]
         [HttpPost("analyzefaces")] // POST api/rekognition/analyzefaces
         [ProducesResponseType(typeof(ResponseAnalyzeFacesJson), StatusCodes.Status200OK)]
@@ -36,14 +25,6 @@ namespace ScanFlowAWS.API.Controllers
 
             return Ok(result);
         }
-
-
-        /// <summary>
-        /// Compara duas imagens enviadas pelo usuário para verificar se são iguais. 
-        /// </summary>
-        /// <param name="request">Duas imagens enviadas pelo usuário para verificação.</param>
-        /// <param name="useCase">Caso de uso respável pela logíca de comparação de imagens</param>
-        /// <returns>Retorna a verificação em um objeto <see cref="ResponseCompareceFacesJson"/>com a porcentagem da comparação ou um <see cref="ResponseErrorsJson"/>em caso de erro.</returns>
 
         [Authorize]
         [HttpPost("compareimages")] // POST api/rekognition/comparecefaces

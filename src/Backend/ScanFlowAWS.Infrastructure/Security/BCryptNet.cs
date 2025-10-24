@@ -4,11 +4,12 @@ namespace ScanFlowAWS.Infrastructure.Security
 {
     internal class BCryptNet : IPasswordEncripter
     {
-
+      
         public string Encrypt(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
+
 
         public bool IsValid(string password, string passwordHash)
         {
