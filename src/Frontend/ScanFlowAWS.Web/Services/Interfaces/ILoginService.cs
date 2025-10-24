@@ -4,6 +4,6 @@ namespace ScanFlowAWS.Web.Services.Interfaces
 {
     public interface ILoginService
     {
-        Task<bool> LoginAsync(LoginFormModel loginForm);
+        Task<string?> LoginAsync(LoginFormModel loginForm);
     }
 }

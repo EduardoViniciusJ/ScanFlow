@@ -1,6 +1,8 @@
-﻿@page "/login"
+﻿@page "/"
+@page "/login"
 @inject ILoginService LoginService
 @inject NavigationManager Navigation
+@inject CustomAuthenticationStateProvider AuthStateProvider
 
 <PageTitle>ScanFlow</PageTitle>
 
@@ -21,10 +23,6 @@
                            autocomplete="email" />
 
                 <ValidationMessage For="@(() => loginForm.Email)" class="text-danger small" />
-
-                <small class="form-text text-muted">
-                    We'll never share your email with anyone else.
-                </small>
             </div>
 
             <div class="mb-3">
@@ -39,11 +37,6 @@
                 <ValidationMessage For="@(() => loginForm.Password)" class="text-danger small" />
             </div>
 
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="remember">
-                <label class="form-check-label" for="remember">Remember me</label>
-            </div>
-
             <button type="submit" class="btn btn-primary w-100">Login</button>
         </EditForm>
 
@@ -54,16 +47,33 @@
 </div>
 
 @code {
+
     private LoginFormModel loginForm = new();
 
     private async Task DoLogin()
     {
-        var result = await LoginService.LoginAsync(new LoginFormModel
+        try
         {
-            Email = loginForm.Email,
-            Password = loginForm.Password
-        });
+            // Faz o login e pega o token
+            var token = await LoginService.LoginAsync(loginForm);
 
-        Navigation.NavigateTo("/analyzeimage");
+            if (!string.IsNullOrEmpty(token))
+            {
+                // Salva o token no estado de autenticação
+                AuthStateProvider.SetToken(token);
+
+                // Redireciona o usuário
+                await Task.Delay(300);
+                Navigation.NavigateTo("/analyzeimage");
+            }
+            else
+            {
+                Console.WriteLine("Erro: token não recebido.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro no login: {ex.Message}");
+        }
     }
 }

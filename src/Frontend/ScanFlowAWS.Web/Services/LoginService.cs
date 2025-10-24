@@ -11,20 +11,23 @@ namespace ScanFlowAWS.Web.Services
         public LoginService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-        }   
+        }
 
-
-        public async Task<bool> LoginAsync(LoginFormModel loginForm)
+        public async Task<string?> LoginAsync(LoginFormModel loginForm)
         {
             var response = await _httpClient.PostAsJsonAsync("api/user/login", loginForm);
 
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content.ReadAsStringAsync();
-                throw new ApplicationException(error);
+                throw new ApplicationException($"Erro ao fazer login: {error}");
             }
 
-            return response.IsSuccessStatusCode;
+            // Lê o JSON que vem da API
+            var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
+
+            return result?.AccessToken;
         }
+
     }
 }
