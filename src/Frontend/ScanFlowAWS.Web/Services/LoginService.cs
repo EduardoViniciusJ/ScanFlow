@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using ScanFlowAWS.Web.Models;
+using ScanFlowAWS.Web.Models.Responses;
 using ScanFlowAWS.Web.Services.Interfaces;
 
 public class LoginService : ILoginService

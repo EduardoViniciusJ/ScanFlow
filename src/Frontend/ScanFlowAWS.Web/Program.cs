@@ -10,28 +10,27 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+var apiBaseUrl = "https://localhost:7208/";
+
 builder.Services.AddAuthorizationCore();
 
-// === Authentication Provider ===
-builder.Services.AddScoped<CustomAuthenticationStateProvider>();
-builder.Services.AddScoped<AuthenticationStateProvider>(sp =>
+builder.Services.AddSingleton<CustomAuthenticationStateProvider>();
+builder.Services.AddSingleton<AuthenticationStateProvider>(sp =>
     sp.GetRequiredService<CustomAuthenticationStateProvider>());
 
-// === HTTP Client e Services ===
 builder.Services.AddScoped<TokenRefreshHandler>();
 
 builder.Services.AddHttpClient("AuthorizedAPI", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7208");
+    client.BaseAddress = new Uri(apiBaseUrl);
 })
 .AddHttpMessageHandler<TokenRefreshHandler>();
 
-// HttpClient padrão (sem token) — usado só no Login/Register
 builder.Services.AddScoped(sp =>
-    new HttpClient { BaseAddress = new Uri("https://localhost:7208") });
+    new HttpClient { BaseAddress = new Uri(apiBaseUrl) });
 
-// === Services ===
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
+builder.Services.AddScoped<IAnalyzeImageService, AnalyzeImageService>();
 
 await builder.Build().RunAsync();

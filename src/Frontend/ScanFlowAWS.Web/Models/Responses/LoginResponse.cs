@@ -1,4 +1,4 @@
-﻿namespace ScanFlowAWS.Web.Models
+﻿namespace ScanFlowAWS.Web.Models.Responses
 {
     public class LoginResponse
     {
