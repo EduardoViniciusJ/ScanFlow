@@ -5,6 +5,6 @@ namespace ScanFlowAWS.Web.Services.Interfaces
 {
     public interface IAnalyzeImageService
     {
-        Task<ResponseAnalyzeFacesJson?> AnalyzeFacesAsync(IBrowserFile imageFile);
+        Task<List<ResponseAnalyzeFacesJson>?> AnalyzeFacesAsync(IBrowserFile imageFile);
     }
 }
