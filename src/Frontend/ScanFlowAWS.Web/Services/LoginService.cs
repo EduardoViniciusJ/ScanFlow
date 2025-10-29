@@ -1,33 +1,43 @@
-﻿using ScanFlowAWS.Web.Models;
+﻿using System.Net.Http.Json;
+using ScanFlowAWS.Web.Models;
 using ScanFlowAWS.Web.Services.Interfaces;
-using System.Net.Http.Json;
 
-namespace ScanFlowAWS.Web.Services
+public class LoginService : ILoginService
 {
-    public class LoginService : ILoginService
+    private readonly HttpClient _http;
+    private readonly CustomAuthenticationStateProvider _authProvider;
+
+    public LoginService(HttpClient http, CustomAuthenticationStateProvider authProvider)
     {
-        private readonly HttpClient _httpClient;
+        _http = http;
+        _authProvider = authProvider;
+    }
 
-        public LoginService(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
+    public async Task<LoginResponse?> LoginAsync(LoginFormModel loginForm)
+    {
+        var response = await _http.PostAsJsonAsync("api/user/login", loginForm);
+        if (!response.IsSuccessStatusCode) return null;
 
-        public async Task<string?> LoginAsync(LoginFormModel loginForm)
-        {
-            var response = await _httpClient.PostAsJsonAsync("api/user/login", loginForm);
+        var loginResponse = await response.Content.ReadFromJsonAsync<LoginResponse>();
+        if (loginResponse != null)
+            _authProvider.SetToken(loginResponse.AccessToken, loginResponse.RefreshToken);
 
-            if (!response.IsSuccessStatusCode)
-            {
-                var error = await response.Content.ReadAsStringAsync();
-                throw new ApplicationException($"Erro ao fazer login: {error}");
-            }
+        return loginResponse;
+    }
 
-            // Lê o JSON que vem da API
-            var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
+    public async Task<bool> RefreshTokenAsync(string accessToken, string refreshToken)
+    {
+        var body = new { AccessToken = accessToken, RefreshToken = refreshToken };
+        var response = await _http.PostAsJsonAsync("api/user/refresh-token", body);
 
-            return result?.AccessToken;
-        }
+        if (!response.IsSuccessStatusCode)
+            return false;
 
+        var tokens = await response.Content.ReadFromJsonAsync<LoginResponse>();
+        if (tokens == null || string.IsNullOrEmpty(tokens.AccessToken))
+            return false;
+
+        _authProvider.SetToken(tokens.AccessToken, tokens.RefreshToken);
+        return true;
     }
 }

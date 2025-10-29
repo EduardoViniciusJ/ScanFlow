@@ -47,23 +47,23 @@
 </div>
 
 @code {
-
     private LoginFormModel loginForm = new();
+    private bool isLoading = false;
 
     private async Task DoLogin()
     {
+        isLoading = true;
+
         try
         {
-            // Faz o login e pega o token
-            var token = await LoginService.LoginAsync(loginForm);
+            var result = await LoginService.LoginAsync(loginForm);
 
-            if (!string.IsNullOrEmpty(token))
+            if (result != null && !string.IsNullOrEmpty(result.AccessToken))
             {
-                // Salva o token no estado de autenticação
-                AuthStateProvider.SetToken(token);
+                AuthStateProvider.SetToken(result.AccessToken, result.RefreshToken);
 
-                // Redireciona o usuário
-                await Task.Delay(300);
+                await Task.Delay(200);
+
                 Navigation.NavigateTo("/analyzeimage");
             }
             else
@@ -74,6 +74,10 @@
         catch (Exception ex)
         {
             Console.WriteLine($"Erro no login: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
         }
     }
 }

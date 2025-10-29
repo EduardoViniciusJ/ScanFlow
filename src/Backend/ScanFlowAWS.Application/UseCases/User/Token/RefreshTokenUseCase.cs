@@ -20,14 +20,6 @@ namespace ScanFlowAWS.Application.UseCases.User.Token
         private readonly ITokenService _tokenService;
         private readonly IUnitOfWork _unitOfWork;
 
-        /// <summary>
-        /// Construtor do caso de uso <see cref="RefreshTokenUseCase"/>.
-        /// </summary>
-        /// <param name="tokenReadOnlyRepository">Repositório para leitura de tokens existentes.</param>
-        /// <param name="userReadOnlyRepository">Repositório para leitura de usuários.</param>
-        /// <param name="tokenService">Serviço responsável por criar tokens JWT e refresh tokens.</param>
-        /// <param name="unitOfWork">Unit of Work para salvar no banco de dados.</param>
-        /// <param name="tokenWriteOnlyRepository">Repositório para gravação e exclusão de tokens.</param>
         public RefreshTokenUseCase(
             ITokenReadOnlyRepository tokenReadOnlyRepository,
             IUserReadOnlyRepository userReadOnlyRepository,
@@ -42,14 +34,6 @@ namespace ScanFlowAWS.Application.UseCases.User.Token
             _tokenWriteOnlyRepository = tokenWriteOnlyRepository;
         }
 
-        /// <summary>
-        /// Executa a atualização do token de acesso usando um Refresh Token.
-        /// </summary>
-        /// <param name="request">Objeto contendo o Refresh Token enviado pelo cliente.</param>
-        /// <returns>Objeto <see cref="ResponseLoginUserJson"/> contendo o novo Access Token e Refresh Token.</returns>
-        /// <exception cref="InvalidTokenException">
-        /// Lançada quando o Refresh Token é inválido, expirado ou não corresponde a um usuário existente.
-        /// </exception>
         public async Task<ResponseLoginUserJson> Execute(RequestTokenJson request)
         {
             // Busca o token no repositório
