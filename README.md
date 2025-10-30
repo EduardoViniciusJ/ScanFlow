@@ -28,7 +28,7 @@ O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** p
 
 ---
 
-## Funcionalidades
+## ⚙️ Funcionalidades
 
 ### Autenticação e Usuários
 - Registro de usuários com validação de credenciais.
@@ -71,10 +71,11 @@ O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** p
 ![Tela de Login](docs/images/login-page.png)
 
 ### 📸 Análise de Imagem
-![Tela de Análise](docs/images/analyze-page.png)
+![Tela de Análise 1](docs/images/analyze-page1.png)
+![Tela de Análise 2](docs/images/analyze-page2.png)
 
 ### 🔍 Comparação de Imagens
-![Tela de Comparação](docs/images/compare-page.png)
+![Tela de Comparação 1](docs/images/compare-page.png)
+![Tela de Comparação 2](docs/images/compare-page2.png)
 
 ---
-
