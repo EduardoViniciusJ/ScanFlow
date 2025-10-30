@@ -72,7 +72,7 @@ O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** p
 
 ### 📸 Análise de Imagem
 <img width="1912" height="1010" alt="Image" src="https://github.com/user-attachments/assets/fa0516fd-fb4d-4499-9e36-0171638b3c59" />
-![Tela de Análise 2](docs/images/analyze-page2.png)
+<img width="1915" height="1012" alt="Image" src="https://github.com/user-attachments/assets/79e8989c-513c-414e-abb3-fe5dbb6756b2" />
 
 ### 🔍 Comparação de Imagens
 ![Tela de Comparação 1](docs/images/compare-page.png)
