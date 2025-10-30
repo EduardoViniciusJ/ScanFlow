@@ -65,17 +65,19 @@ O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** p
 ## 🖼️ Telas da Aplicação
 
 ### 🧾 Registro de Usuário
-![Tela de Registro](docs/images/register-page.png)
+<img width="1913" height="1011" alt="Image" src="https://github.com/user-attachments/assets/f66f5d55-cae5-4059-aedf-673fb1d7fa26" />
 
 ### 🔑 Login
-![Tela de Login](docs/images/login-page.png)
+<img width="1918" height="1012" alt="Image" src="https://github.com/user-attachments/assets/5fe611af-6599-4054-b1b6-8d42c3220a3a" />
 
 ### 📸 Análise de Imagem
 <img width="1912" height="1010" alt="Image" src="https://github.com/user-attachments/assets/fa0516fd-fb4d-4499-9e36-0171638b3c59" />
+
 <img width="1915" height="1012" alt="Image" src="https://github.com/user-attachments/assets/79e8989c-513c-414e-abb3-fe5dbb6756b2" />
 
 ### 🔍 Comparação de Imagens
 <img width="1917" height="1015" alt="Image" src="https://github.com/user-attachments/assets/d7a0c133-a560-4fa5-b5b8-a9cd3c5a7ff1" />
+
 <img width="1917" height="1012" alt="Image" src="https://github.com/user-attachments/assets/9d41e3b3-cd45-41a4-ba94-492017fc93cc" />
 
 ---
