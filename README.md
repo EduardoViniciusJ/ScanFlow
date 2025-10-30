@@ -71,7 +71,7 @@ O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** p
 ![Tela de Login](docs/images/login-page.png)
 
 ### 📸 Análise de Imagem
-![Tela de Análise 1](docs/images/analyze-page1.png)
+<img width="1912" height="1010" alt="Image" src="https://github.com/user-attachments/assets/fa0516fd-fb4d-4499-9e36-0171638b3c59" />
 ![Tela de Análise 2](docs/images/analyze-page2.png)
 
 ### 🔍 Comparação de Imagens
