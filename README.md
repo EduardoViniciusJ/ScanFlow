@@ -3,15 +3,15 @@
 **ScanFlow** é uma aplicação full stack em **.NET** com **Blazor WebAssembly** no frontend e **ASP.NET Core Web API** no backend, seguindo os princípios de **DDD (Domain-Driven Design)**.  
 O sistema permite **análise de faces e comparação de imagens** utilizando o serviço **AWS Rekognition**, com autenticação segura via **JWT** e suporte a **refresh tokens**.
 
-O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** para estilização e **FluentValidation** para validação de formulários.
+O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** para estilização.
 
 ---
 
-## Tecnologias Utilizadas
+## 🧰 Tecnologias Utilizadas
 
 ### Backend
 - **.NET 8**
-- **ASP.NET CORE Web API**
+- **ASP.NET Core Web API**
 - **AWS Rekognition**
 - **JWT Authentication**
 - **BCrypt**
@@ -24,7 +24,6 @@ O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** p
 ### Frontend
 - **Blazor WebAssembly**
 - **Bootstrap**
-- **FluentValidation**
 - **Blazored.FluentValidation**
 
 ---
@@ -44,12 +43,11 @@ O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** p
 
 ### Frontend Blazor
 - Interface responsiva usando **Bootstrap**.
-- Validação de formulários com **FluentValidation**.
-- Comunicação com a API backend via HttpClient.
+- Comunicação com a API backend via **HttpClient**.
 
 ---
 
-## Endpoints Principais do Backend
+## 🔗 Endpoints Principais do Backend
 
 ### Usuários
 - `POST /api/user/register` → Registrar um novo usuário.  
@@ -62,4 +60,21 @@ O frontend é construído com **Blazor WebAssembly**, utilizando **Bootstrap** p
 - `POST /api/rekognition/analyzefaces` → Analisar características faciais de uma imagem.  
 - `POST /api/rekognition/compareimages` → Comparar duas imagens para verificar semelhança.  
 
-> Todos os endpoints de Rekognition exigem autenticação (`[Authorize]`).
+---
+
+## 🖼️ Telas da Aplicação
+
+### 🧾 Registro de Usuário
+![Tela de Registro](docs/images/register-page.png)
+
+### 🔑 Login
+![Tela de Login](docs/images/login-page.png)
+
+### 📸 Análise de Imagem
+![Tela de Análise](docs/images/analyze-page.png)
+
+### 🔍 Comparação de Imagens
+![Tela de Comparação](docs/images/compare-page.png)
+
+---
+
