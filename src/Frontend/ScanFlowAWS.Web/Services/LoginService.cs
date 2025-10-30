@@ -14,12 +14,12 @@ public class LoginService : ILoginService
         _authProvider = authProvider;
     }
 
-    public async Task<LoginResponse?> LoginAsync(LoginFormModel loginForm)
+    public async Task<ResponseLoginJson?> LoginAsync(LoginFormModel loginForm)
     {
         var response = await _http.PostAsJsonAsync("api/user/login", loginForm);
         if (!response.IsSuccessStatusCode) return null;
 
-        var loginResponse = await response.Content.ReadFromJsonAsync<LoginResponse>();
+        var loginResponse = await response.Content.ReadFromJsonAsync<ResponseLoginJson>();
         if (loginResponse != null)
             _authProvider.SetToken(loginResponse.AccessToken, loginResponse.RefreshToken);
 
@@ -34,7 +34,7 @@ public class LoginService : ILoginService
         if (!response.IsSuccessStatusCode)
             return false;
 
-        var tokens = await response.Content.ReadFromJsonAsync<LoginResponse>();
+        var tokens = await response.Content.ReadFromJsonAsync<ResponseLoginJson>();
         if (tokens == null || string.IsNullOrEmpty(tokens.AccessToken))
             return false;
 

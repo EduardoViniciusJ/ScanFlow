@@ -27,7 +27,7 @@ namespace ScanFlowAWS.API.Controllers
         }
 
         [Authorize]
-        [HttpPost("compareimages")] // POST api/rekognition/comparecefaces
+        [HttpPost("compareimages")] // POST api/rekognition/compareimages
         [ProducesResponseType(typeof(ResponseCompareceFacesJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> CompareImages([FromForm] RequestCompareceFacesJson request, [FromServices] ICompareceFaces useCase)

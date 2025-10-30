@@ -42,14 +42,14 @@
 
     private void HandleFileSelected(InputFileChangeEventArgs e)
     {
-        form.ImageFile = e.File;
+        form.file = e.File;
         results = null;
         errorMessage = null;
     }
 
     private async Task HandleSubmit()
     {
-        if (form.ImageFile == null)
+        if (form.file == null)
         {
             errorMessage = "Por favor, selecione uma imagem.";
             return;
@@ -58,7 +58,7 @@
         try
         {
             isLoading = true;
-            results = await AnalyzeImageService.AnalyzeFacesAsync(form.ImageFile);
+            results = await AnalyzeImageService.AnalyzeFacesAsync(form.file);
         }
         catch (Exception ex)
         {
@@ -70,8 +70,4 @@
         }
     }
 
-    private class AnalyzeImageFormModel
-    {
-        public IBrowserFile? ImageFile { get; set; }
-    }
 }

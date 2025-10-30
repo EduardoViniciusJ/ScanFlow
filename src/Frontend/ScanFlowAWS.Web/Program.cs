@@ -32,5 +32,6 @@ builder.Services.AddScoped(sp =>
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<IAnalyzeImageService, AnalyzeImageService>();
+builder.Services.AddScoped<ICompareImageService, CompareImageService>();
 
 await builder.Build().RunAsync();

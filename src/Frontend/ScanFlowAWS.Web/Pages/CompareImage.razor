@@ -1,9 +1,88 @@
 ﻿@page "/compareimage"
 @attribute [Authorize]
+@inject ICompareImageService CompareImageService
 
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h3 class="text-center mb-4">Compare Two Images</h3>
 
-<h3>CompareImage</h3>
+        <EditForm Model="form" OnValidSubmit="HandleSubmit">
+            <div class="mb-3">
+                <label class="form-label">First Image (Source)</label>
+                <InputFile OnChange="HandleSourceSelected" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Second Image (Target)</label>
+                <InputFile OnChange="HandleTargetSelected" class="form-control" />
+            </div>
+
+            <button class="btn btn-primary w-100" disabled="@isLoading">
+                @(isLoading ? "Comparing..." : "Compare Images")
+            </button>
+        </EditForm>
+
+        @if (result != null)
+        {
+            <div class="alert alert-success mt-4">
+                <p><strong>Similarity:</strong> @result.Similarity</p>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert alert-danger mt-3">@errorMessage</div>
+        }
+    </div>
+</div>
 
 @code {
+    private CompareImageFormModel form = new();
 
+    private ResponseCompareImageJson? result;
+    private bool isLoading = false;
+    private string? errorMessage;
+
+    private void HandleSourceSelected(InputFileChangeEventArgs e)
+    {
+        form.FileSource = e.File;
+        result = null;
+        errorMessage = null;
+    }
+
+    private void HandleTargetSelected(InputFileChangeEventArgs e)
+    {
+        form.FileTarget = e.File;
+        result = null;
+        errorMessage = null;
+    }
+
+    private async Task HandleSubmit()
+    {
+        if (form.FileSource == null)
+        {
+            errorMessage = "Por favor, selecione a primeira imagem.";
+            return;
+        }
+
+        if (form.FileTarget == null)
+        {
+            errorMessage = "Por favor, selecione a segunda imagem.";
+            return;
+        }
+
+        try
+        {
+            isLoading = true;
+            result = await CompareImageService.CompareImage(form.FileSource, form.FileTarget);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
 }
